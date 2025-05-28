@@ -1,0 +1,110 @@
+# Visando a instalação "facilitada" do software BUSCO, sem a necessidade de checar
+# manualmente as dependências, optou-se por instalação via conda.
+
+# Inicialmente, instalaremos o Anaconda/Conda para o Mint
+
+sudo apt update # verifica se o sistema está atualizado.
+
+sudo apt install curl bzip2 # instala pacotes necessários para o conda.
+
+# Caso queira checar a instalação:
+
+curl --version
+bzip2 --version
+
+# Em seguida, localiza-se a versão no site próprio do Anaconda, substituindo o link
+# no comando abaixo
+
+curl -O https://[...]/AnacondaX-202X.X-X-Linux-x86_64.sh
+
+# É aconselhável checar a integridade do download via SHA-256
+# comparando-se com o valor obtido no site do software
+
+sha256sum AnacondaX-202X.X-X-Linux-x86_64.sh
+
+# Iniciando a instalação
+
+chmod +x AnacondaX-202X.X-X-Linux-x86_64.sh # confere permissões de executar o arquivo
+
+sudo ./AnacondaX-202X.X-X-Linux-x86_64.sh # executa como administrador
+
+# Caminho padrão que é instalado : /home/seuusuario/anaconda3
+# Para configurar o Conda no ambiente, usar;
+
+conda init
+
+# Reiniciar o terminal, ou executar source ~/.bashrc ou source ~/.zshrc
+# Caso não adicione automaticamente, siga conforme abaixo
+
+vim .bashrc # abre o arquivo de configuração do shell
+
+# adicione após todos comandos o seguinte:
+
+export PATH="/home/seuusuario/anaconda3/bin:$PATH"
+
+# salve o arquivo, com o vim aperta-se esc e após digita-se :x e então enter
+# reinicie o terminal
+
+# Para testar a instalação:
+
+anaconda-navigator # abre a interface gráfica
+
+# Recomenda-se também:
+
+conda list # mostra os pacotes instalados naquele ambiente
+
+# Instalação completa
+# Adaptado de https://idroot.us/install-anaconda-linux-mint-22/
+
+
+# Ajustando o BioConda
+# Precisa ser feito apenas na primeira vez
+
+conda config --add channel bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+
+# Instalando o BUSCO
+
+# Checar instalação do Conda
+
+conda -V # precisa ser 4.8.4 ou maior para funcionar com o busco
+conda update -n base conda # atualiza se necessário
+
+# Instalando o BUSCO
+
+conda install -c conda-forge -c bioconda busco=5.8.2 # checar versão
+
+# Se não retornar erros, o BUSCO encontra-se disponível
+
+# Abaixo seguem alguns comandos de interesse para o BUSCO
+# Maiores detalhes podem ser acessados no guia do usuário
+# https://busco.ezlab.org/busco_userguide.html
+
+busco -i [ARQUIVO_SEQ] -m [MODO] [DEMAIS OPÇÕES]
+
+# -i define o arquivo de input, podendo ser um arquivo fasta de nucleotídeo ou proteína.
+# -m define o modo para o BUSCO rodar: genome, proteins, transcriptome
+# Recomenda-Visando a instalação "facilitada" do software BUSCO, sem a necessidade de checar
+# manualmente as dependências, optou-se por instalação via conda.
+
+# Inicialmente, instalaremos o Anaconda/Conda para o Mint
+
+sudo apt update # verifica se o sistema está atualizado.
+
+sudo apt install curl bzip2 # instala pacotes necessários para o conda.se o uso dos parametros extras a seguir
+# -l especifica a linhagem do dataset para buscar-se as sequências
+# para ver uma lista das linhagens disponíveis, usar o comando
+
+busco --list-datasets
+
+# -c especifica o número de cores para usar, adequar com o computador
+# se não souber, podes usar o comando abaixo para ver o total de cores disponíveis
+
+lscpu # usar menos que o máximo e mais que o mínimo quando possível
+
+# -o fornece um nome curto para identificar a análise em questao
+
+# Maiores opções podem ser consultadas no guia do usuário ou via
+
+busco --help
