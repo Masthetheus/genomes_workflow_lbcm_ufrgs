@@ -1,0 +1,298 @@
+% Module: BUSCO Analysis for Genome Assessment
+% Author: LBCM Course Team
+% Date: 2024
+
+\section{BUSCO Analysis for Genome Assessment}
+
+\subsection{Introduction to BUSCO}
+
+BUSCO (Benchmarking Universal Single-Copy Orthologs) is a widely used tool for assessing genome completeness and annotation quality. It searches for highly conserved genes that are expected to be present in most species within a phylogenetic group.
+
+\subsubsection{Key Concepts}
+\begin{itemize}
+    \item \textbf{Universal Single-Copy Orthologs}: Genes that are conserved across species and typically present in single copy
+    \item \textbf{Completeness Assessment}: Measure of how complete a genome assembly or annotation is
+    \item \textbf{Lineage-Specific Datasets}: Gene sets tailored to specific phylogenetic groups
+\end{itemize}
+
+\subsection{BUSCO Installation and Setup}
+
+\subsubsection{Prerequisites}
+Before installing BUSCO, ensure you have:
+\begin{itemize}
+    \item Python 3.3 or higher
+    \item Conda package manager
+    \item Sufficient disk space for databases
+\end{itemize}
+
+\subsubsection{Installation via Conda}
+The recommended installation method uses conda:
+
+\begin{verbatim}
+# Update conda
+conda update -n base conda
+
+# Add bioconda channel
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+
+# Install BUSCO
+conda install -c bioconda busco=5.4.7
+\end{verbatim}
+
+\subsubsection{Verification}
+Test the installation:
+\begin{verbatim}
+busco --help
+busco --version
+\end{verbatim}
+
+\subsection{BUSCO Datasets}
+
+\subsubsection{Available Lineages}
+List available datasets:
+\begin{verbatim}
+busco --list-datasets
+\end{verbatim}
+
+Common lineages include:
+\begin{itemize}
+    \item \textbf{bacteria\_odb10}: Bacterial genomes
+    \item \textbf{archaea\_odb10}: Archaeal genomes
+    \item \textbf{eukaryota\_odb10}: Eukaryotic genomes
+    \item \textbf{fungi\_odb10}: Fungal genomes
+    \item \textbf{metazoa\_odb10}: Animal genomes
+    \item \textbf{embryophyta\_odb10}: Plant genomes
+\end{itemize}
+
+\subsubsection{Dataset Download}
+Datasets are automatically downloaded when first used, but can be pre-downloaded:
+\begin{verbatim}
+busco --download-dataset bacteria_odb10
+\end{verbatim}
+
+\subsection{Running BUSCO Analysis}
+
+\subsubsection{Basic Usage}
+The general BUSCO command structure:
+\begin{verbatim}
+busco -i INPUT -l LINEAGE -o OUTPUT -m MODE [OPTIONS]
+\end{verbatim}
+
+\subsubsection{Parameters}
+\begin{itemize}
+    \item \textbf{-i}: Input sequence file (FASTA format)
+    \item \textbf{-l}: Lineage dataset to use
+    \item \textbf{-o}: Output directory name
+    \item \textbf{-m}: Mode (genome, transcriptome, or proteins)
+    \item \textbf{-c}: Number of CPU cores to use
+    \item \textbf{--force}: Overwrite existing output
+\end{itemize}
+
+\subsubsection{Example Commands}
+
+\textbf{Genome Assembly Assessment:}
+\begin{verbatim}
+busco -i genome.fasta -l bacteria_odb10 -o busco_genome -m genome -c 8
+\end{verbatim}
+
+\textbf{Protein Annotation Assessment:}
+\begin{verbatim}
+busco -i proteins.faa -l bacteria_odb10 -o busco_proteins -m proteins -c 8
+\end{verbatim}
+
+\textbf{Transcriptome Assessment:}
+\begin{verbatim}
+busco -i transcripts.fasta -l bacteria_odb10 -o busco_transcripts -m transcriptome -c 8
+\end{verbatim}
+
+\subsection{Understanding BUSCO Output}
+
+\subsubsection{Output Files}
+BUSCO creates several output files:
+\begin{itemize}
+    \item \textbf{short\_summary.txt}: Concise results summary
+    \item \textbf{full\_table.tsv}: Detailed results for each BUSCO
+    \item \textbf{missing\_busco\_list.tsv}: List of missing BUSCOs
+    \item \textbf{run\_info/}: Detailed run information
+\end{itemize}
+
+\subsubsection{Result Categories}
+BUSCO classifies genes into categories:
+\begin{itemize}
+    \item \textbf{Complete (C)}: BUSCO found completely
+    \item \textbf{Complete Single-copy (S)}: Found once (expected)
+    \item \textbf{Complete Duplicated (D)}: Found multiple times
+    \item \textbf{Fragmented (F)}: Partial matches found
+    \item \textbf{Missing (M)}: No match found
+\end{itemize}
+
+\subsubsection{Quality Metrics}
+\begin{itemize}
+    \item \textbf{Completeness}: (C + F) / Total BUSCOs
+    \item \textbf{Duplication}: D / (C + F)
+    \item \textbf{Fragmentation}: F / Total BUSCOs
+\end{itemize}
+
+\subsection{Interpreting BUSCO Results}
+
+\subsubsection{Good Quality Indicators}
+\begin{itemize}
+    \item High completeness (>95\% for high-quality genomes)
+    \item Low duplication (<5\% for most genomes)
+    \item Low fragmentation (<5\%)
+    \item Low missing percentage (<5\%)
+\end{itemize}
+
+\subsubsection{Example Result Interpretation}
+\begin{verbatim}
+Results:
+    C:98.5%[S:97.8%,D:0.7%],F:0.8%,M:0.7%,n:124
+    
+Interpretation:
+- 98.5% complete BUSCOs (excellent)
+- 97.8% single-copy (good)
+- 0.7% duplicated (acceptable)
+- 0.8% fragmented (good)
+- 0.7% missing (excellent)
+\end{verbatim}
+
+\subsection{Advanced BUSCO Usage}
+
+\subsubsection{Custom Parameters}
+\begin{verbatim}
+busco -i genome.fasta \
+      -l bacteria_odb10 \
+      -o busco_analysis \
+      -m genome \
+      -c 16 \
+      --long \
+      --augustus \
+      --augustus_species generic
+\end{verbatim}
+
+\subsubsection{Plotting Results}
+Generate plots from BUSCO output:
+\begin{verbatim}
+generate_plot.py -wd /path/to/busco/summaries
+\end{verbatim}
+
+\subsection{Practical Exercise: BUSCO Analysis}
+
+\subsubsection{Exercise Setup}
+We'll analyze a bacterial genome using BUSCO:
+
+\begin{enumerate}
+    \item Download a sample bacterial genome
+    \item Run BUSCO analysis
+    \item Interpret the results
+    \item Compare with reference genomes
+\end{enumerate}
+
+\subsubsection{Step-by-Step Analysis}
+
+\textbf{Step 1: Prepare the genome file}
+\begin{verbatim}
+# Download sample genome (E. coli)
+wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/Escherichia_coli/latest_assembly_versions/GCF_000005825.2_ASM582v2/GCF_000005825.2_ASM582v2_genomic.fna.gz
+gunzip GCF_000005825.2_ASM582v2_genomic.fna.gz
+\end{verbatim}
+
+\textbf{Step 2: Run BUSCO}
+\begin{verbatim}
+busco -i GCF_000005825.2_ASM582v2_genomic.fna \
+      -l bacteria_odb10 \
+      -o ecoli_busco \
+      -m genome \
+      -c 4 \
+      --force
+\end{verbatim}
+
+\textbf{Step 3: Examine results}
+\begin{verbatim}
+# View summary
+cat ecoli_busco/short_summary.txt
+
+# View detailed results
+head -20 ecoli_busco/full_table.tsv
+
+# Check missing BUSCOs
+cat ecoli_busco/missing_busco_list.tsv
+\end{verbatim}
+
+\subsubsection{Expected Results}
+For a high-quality E. coli genome, expect:
+\begin{itemize}
+    \item Completeness: >99\%
+    \item Duplication: <1\%
+    \item Fragmentation: <1\%
+    \item Missing: <1\%
+\end{itemize}
+
+\subsection{Troubleshooting Common Issues}
+
+\subsubsection{Installation Problems}
+\begin{itemize}
+    \item \textbf{Conda conflicts}: Use dedicated environment
+    \item \textbf{Missing dependencies}: Install from bioconda
+    \item \textbf{Version conflicts}: Specify exact versions
+\end{itemize}
+
+\subsubsection{Runtime Issues}
+\begin{itemize}
+    \item \textbf{Memory errors}: Reduce thread count
+    \item \textbf{Disk space}: Ensure sufficient storage
+    \item \textbf{Network issues}: Pre-download datasets
+\end{itemize}
+
+\subsubsection{Result Interpretation}
+\begin{itemize}
+    \item \textbf{Low completeness}: Check input quality
+    \item \textbf{High duplication}: Possible contamination
+    \item \textbf{Wrong lineage}: Verify organism classification
+\end{itemize}
+
+\subsection{BUSCO in Genomics Workflows}
+
+\subsubsection{Quality Control}
+BUSCO is commonly used for:
+\begin{itemize}
+    \item Assembly quality assessment
+    \item Annotation completeness evaluation
+    \item Contamination detection
+    \item Comparative genomics studies
+\end{itemize}
+
+\subsubsection{Publication Standards}
+Many journals require BUSCO scores for:
+\begin{itemize}
+    \item Genome assemblies
+    \item Transcriptome assemblies
+    \item Protein annotations
+    \item Comparative studies
+\end{itemize}
+
+\subsection{Best Practices}
+
+\begin{enumerate}
+    \item \textbf{Choose appropriate lineage}: Use most specific dataset
+    \item \textbf{Consider contamination}: High duplication may indicate issues
+    \item \textbf{Compare with related species}: Context matters
+    \item \textbf{Document parameters}: Include in methods
+    \item \textbf{Archive results}: Keep detailed outputs
+\end{enumerate}
+
+\subsection{Summary}
+
+BUSCO is an essential tool for genome quality assessment that:
+\begin{itemize}
+    \item Provides standardized completeness metrics
+    \item Enables comparison across studies
+    \item Helps identify assembly and annotation issues
+    \item Is widely accepted in the genomics community
+\end{itemize}
+
+\subsection{Next Steps}
+
+In the next module, we will explore genome annotation pipelines that integrate BUSCO assessment with other quality control tools and annotation methods.

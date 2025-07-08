@@ -1,0 +1,58 @@
+# Python dependencies for the LaTeX Course Builder
+# Install with: pip install -r requirements.txt
+
+# YAML configuration support
+PyYAML>=6.0
+
+# PDF processing (optional but recommended)
+PyPDF2>=3.0.0
+
+# PDF generation (alternative to PyPDF2)
+reportlab>=3.6.0
+
+# Command line interface enhancements
+colorama>=0.4.0
+
+# Progress bars (for future use)
+tqdm>=4.60.0
+
+# File watching (for future use)
+watchdog>=2.0.0
+
+# Markdown processing (for README parsing)
+markdown>=3.4.0
+
+# Path manipulation utilities
+pathlib2>=2.3.0; python_version < "3.4"
+
+# Enhanced logging
+structlog>=21.0.0
+
+# Configuration validation
+cerberus>=1.3.0
+
+# Cross-platform file operations
+pathspec>=0.9.0
+
+# Date/time utilities
+python-dateutil>=2.8.0
+
+# Optional: Enhanced PDF features
+# Uncomment if you need advanced PDF manipulation
+# pdfrw>=0.4
+# pdfminer.six>=20220524
+
+# Optional: Image processing
+# Uncomment if you need image manipulation
+# Pillow>=9.0.0
+
+# Optional: Advanced LaTeX support
+# Uncomment if you need LaTeX syntax checking
+# pylatexenc>=2.10
+
+# Development dependencies (uncomment for development)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=22.0.0
+# flake8>=4.0.0
+# mypy>=0.950
