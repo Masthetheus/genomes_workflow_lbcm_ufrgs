@@ -1,0 +1,131 @@
+% Beautiful Research Note Template with Bibliography Support
+% Based on NotesTeX and Gilles Castel's aesthetic approach
+% DATE_PLACEHOLDER
+% PAPER_PLACEHOLDER
+
+\documentclass[a4paper,11pt]{article}
+
+% Use ONLY the beautiful notes preamble for notes
+\input{../../../global/templates/beautiful_notes_preamble}
+
+\title{
+    \vspace{-2cm}
+    \textcolor{noteblue}{\Huge Research Notes}\\
+    \vspace{0.5cm}
+    \textcolor{sidenotegray}{\Large PAPER_PLACEHOLDER}\\
+    \vspace{0.2cm}
+    \textcolor{sidenotegray}{\large DATE_PLACEHOLDER}
+}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\begin{progress}
+    \item Started research session
+    \item 
+\end{progress}
+
+\begin{ideas}
+    \item 
+\end{ideas}
+
+\begin{questions}
+    \item 
+\end{questions}
+
+\section{Literature Review}
+
+\subsection{Paper Title}
+\sn{Quick reference note in margin}
+
+Key findings:
+\begin{itemize}
+    \item Important result from \cite{example2024}
+    \item Another finding \citep{author2024}
+    \item See also \citet{smith2024}
+\end{itemize}
+
+\begin{theorem}
+Main theoretical result from the paper \citep{example2024}.
+\end{theorem}
+
+\begin{definition}
+Important concept definition from \cite{author2024}.
+\end{definition}
+
+\begin{example}
+Practical example based on \citet{smith2024}.
+\end{example}
+
+\section{Experiments \& Results}
+
+\subsection{Experiment 1}
+\sn{Experimental parameters}
+
+\begin{itemize}
+    \item \textbf{Objective:} 
+    \item \textbf{Method:} Based on approach from \cite{example2024}
+    \item \textbf{Results:} 
+\end{itemize}
+
+\section{Theoretical Insights}
+
+\begin{remark}
+Important theoretical observation following \citet{author2024}.
+\end{remark}
+
+\section{Code \& Implementation}
+
+\begin{lstlisting}[language=Python, caption=Sample code based on \protect\cite{smith2024}]
+# Your code here
+def extract_kmers(sequence, k=8):
+    """Extract k-mers from sequence"""
+    return [sequence[i:i+k] for i in range(len(sequence)-k+1)]
+\end{lstlisting}
+
+\section{Data Analysis}
+
+% Analysis and results
+
+\subsection{Results Summary}
+\sn{Statistical significance}
+
+\begin{itemize}
+    \item \textbf{Dataset:} 
+    \item \textbf{Method:} 
+    \item \textbf{Accuracy:} 
+\end{itemize}
+
+\begin{references}
+    \item Key papers: \cite{example2024,author2024,smith2024}
+    \item To read: [Paper titles to investigate]
+    \item Related work: [Author names and papers]
+\end{references}
+
+\section{Next Steps}
+
+\begin{itemize}
+    \item \todo{Implement method from \cite{example2024}}
+    \item \todo{Compare with \cite{author2024} approach}
+    \item \important{Read \cite{smith2024} in detail}
+\end{itemize}
+
+\begin{notes}
+Additional observations and thoughts...
+
+\highlight{Key insight}: Connection between \cite{example2024} and \cite{author2024}
+
+\idea{Future research direction}: Combine approaches from \cite{example2024,smith2024}
+
+\end{notes}
+
+% BIBLIOGRAPHY
+\newpage
+\printbibliography
+
+\end{document}
