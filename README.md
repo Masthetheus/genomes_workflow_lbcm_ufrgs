@@ -1,4 +1,4 @@
-# Workflow Genomes - LBCM - UFRGS
+# Genomes Workflow - LBCM - UFRGS
 
 Repository contains mainly MD files aimed to structure a easy to start approach to genome annotation and assembly.
 
