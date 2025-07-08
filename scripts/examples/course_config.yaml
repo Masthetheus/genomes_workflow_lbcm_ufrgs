@@ -1,0 +1,42 @@
+# Course Configuration for Genome Annotation Course
+# This file defines the structure and settings for the complete course
+
+course:
+  title: "Genome Annotation and Assembly Workshop"
+  subtitle: "Practical Bioinformatics for Genomics Research"
+  author: "LBCM - Laboratório de Biologia Computacional e Molecular"
+  institution: "Universidade Federal do Rio Grande do Sul (UFRGS)"
+  version: "1.0"
+  date: "2024"
+  
+# Module configuration
+modules:
+  - name: "01_introduction"
+    title: "Introduction to Genome Annotation"
+    description: "Fundamental concepts and methodologies"
+    duration: "3 hours"
+    prerequisites: []
+    
+  - name: "02_busco_analysis"
+    title: "BUSCO Analysis for Genome Assessment"
+    description: "Quality assessment using BUSCO"
+    duration: "4 hours"
+    prerequisites: ["01_introduction"]
+
+# Build settings specific to this course
+build:
+  include_toc: true
+  include_solutions: false
+  page_numbering: true
+  
+# LaTeX document settings
+document:
+  class: "article"
+  font_size: "11pt"
+  paper_size: "a4paper"
+  
+# Output settings
+output:
+  formats: ["pdf"]
+  combine_modules: true
+  create_index: true

@@ -1,0 +1,198 @@
+# Course Configuration
+course:
+  title: "Genome Annotation and Assembly Course"
+  subtitle: "A comprehensive guide to genome analysis workflows"
+  author: "LBCM - Laboratório de Biologia Computacional e Molecular"
+  institution: "UFRGS"
+  version: "1.0"
+  
+  # Directory paths
+  modules_dir: "examples/modules"
+  output_dir: "output"
+  temp_dir: "temp"
+  
+  # Course metadata
+  language: "en"
+  date: "2024"
+  
+# LaTeX compilation settings
+latex:
+  compiler: "pdflatex"
+  document_class: "article"
+  
+  # LaTeX packages to include
+  packages:
+    - "inputenc{utf8}"
+    - "fontenc{T1}"
+    - "babel{english}"
+    - "geometry{margin=1in}"
+    - "hyperref{colorlinks=true,linkcolor=blue,urlcolor=blue}"
+    - "graphicx"
+    - "float"
+    - "amsmath"
+    - "amsfonts"
+    - "amssymb"
+    - "listings"
+    - "xcolor"
+    - "fancyhdr"
+    - "titlesec"
+    - "booktabs"
+    - "longtable"
+    - "array"
+    - "multirow"
+    - "url"
+    - "verbatim"
+    - "subcaption"
+  
+  # Code listing settings
+  listings:
+    basicstyle: "\\ttfamily\\footnotesize"
+    backgroundcolor: "\\color{gray!10}"
+    frame: "single"
+    language: "bash"
+    showstringspaces: false
+    breaklines: true
+    captionpos: "b"
+
+# Build settings
+build:
+  # Include solutions in the output
+  include_solutions: false
+  
+  # Create table of contents
+  create_toc: true
+  
+  # Create list of figures
+  create_lof: false
+  
+  # Create list of tables
+  create_lot: false
+  
+  # Merge all PDFs into one
+  merge_pdfs: false
+  
+  # Clean up temporary files after build
+  cleanup_temp: true
+  
+  # Number of LaTeX compilation passes
+  latex_passes: 2
+  
+  # Include module index
+  create_index: false
+
+# PDF settings
+pdf:
+  # PDF metadata
+  title: "Genome Annotation Course"
+  author: "LBCM"
+  subject: "Bioinformatics Education"
+  keywords: "genome, annotation, bioinformatics, course"
+  
+  # PDF merger backend ('pypdf2', 'reportlab', 'auto')
+  merger_backend: "auto"
+  
+  # Add bookmarks to merged PDF
+  add_bookmarks: true
+
+# Module validation settings
+validation:
+  # Required files in each module
+  required_files:
+    - "main.tex"  # or "module.tex" or "{module_name}.tex"
+  
+  # Recommended files
+  recommended_files:
+    - "README.md"
+    - "images/"
+    - "data/"
+  
+  # File extensions to check for images
+  image_extensions:
+    - ".png"
+    - ".jpg"
+    - ".jpeg"
+    - ".pdf"
+    - ".svg"
+    - ".eps"
+    - ".gif"
+    - ".bmp"
+  
+  # Maximum file size for resources (in MB)
+  max_file_size: 10
+  
+  # Check for LaTeX compilation errors
+  check_compilation: true
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "course_builder.log"
+  
+  # Log rotation
+  max_size: "10MB"
+  backup_count: 5
+  
+  # Console output
+  console: true
+  
+  # Format
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Output formatting
+output:
+  # Document title page
+  title_page: true
+  
+  # Headers and footers
+  header_footer: true
+  
+  # Page numbering
+  page_numbers: true
+  
+  # Section numbering
+  section_numbers: true
+  
+  # Figure and table numbering
+  figure_numbers: true
+  table_numbers: true
+  
+  # Bibliography style
+  bibliography_style: "plain"
+  
+  # Citation style
+  citation_style: "numeric"
+
+# Interactive builder settings
+interactive:
+  # Default selections
+  default_modules: []
+  
+  # Auto-open PDFs after build
+  auto_open_pdf: true
+  
+  # Confirmation prompts
+  confirm_build: true
+  confirm_overwrite: true
+  
+  # Display settings
+  show_progress: true
+  show_file_count: true
+  show_warnings: true
+
+# Advanced settings
+advanced:
+  # Parallel processing (for future use)
+  parallel_builds: false
+  max_workers: 4
+  
+  # Memory settings
+  max_memory: "1GB"
+  
+  # Custom LaTeX commands
+  custom_commands: []
+  
+  # Environment variables
+  env_vars: {}
+  
+  # Plugin support (for future use)
+  plugins: []

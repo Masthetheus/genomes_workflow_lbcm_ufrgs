@@ -1,0 +1,33 @@
+# LaTeX Course Builder - Build outputs and temporary files
+scripts/output/
+scripts/temp/
+scripts/*.pdf
+scripts/*.log
+scripts/__pycache__/
+scripts/utils/__pycache__/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# LaTeX temporary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
