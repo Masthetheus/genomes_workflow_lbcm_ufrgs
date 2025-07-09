@@ -12,6 +12,8 @@ __pycache__/
 
 # LaTeX temporary files
 *.aux
+*.xml
+*.bcf
 *.bbl
 *.blg
 *.log
