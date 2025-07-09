@@ -56,37 +56,74 @@ Key concepts:
         to circumvent this initial barrier.
 \end{itemize}
 
-\section{Tools \& Software}
-
-\subsection{Required Software}
-\sn{Installation notes}
-
-\begin{itemize}
-    \item \textbf{Primary tool:} Tool name and version
-    \item \textbf{Dependencies:} Required libraries/packages
-    \item \textbf{Optional:} Additional helpful tools
-\end{itemize}
-
-\subsection{Installation Guide}
-\begin{lstlisting}[language=bash, caption=Software installation]
-# Installation commands
-conda install -c bioconda tool_name
-# or
-sudo apt-get install package_name
-\end{lstlisting}
-
 \section{Workflow \& Methods}
 
-\subsection{Step-by-Step Protocol}
+\subsection{The repository}
 \sn{Key parameters}
-
-\begin{enumerate}
-    \item \textbf{Data preparation:} Input requirements and formatting
-    \item \textbf{Quality control:} Initial data assessment
-    \item \textbf{Main analysis:} Core computational steps
-    \item \textbf{Result interpretation:} Output analysis and validation
-\end{enumerate}
-
+The repository is structured aiming to facilitate user operation and base codes
+and modules maintenance. The main separation happens in the global folder, that
+stores templates, bibliography files and scripts for project management.\par
+The base skeleton of the repository can be seen below:\par
+\begin{verbatim}
+.
+|-- README.md
+|-- global
+|   |-- bibliography
+|   |   `-- master.bib
+|   |-- scripts
+|   |   |-- main.py
+|   |   `-- tools
+|   |       |-- __init__.py
+|   |       |-- create_module.py
+|   |       `-- set_vim_config.py
+|   `-- templates
+|       |-- README_template.md
+|       |-- enhanced_vimtex_config.vim
+|       |-- gilles_snippets.snippets
+|       |-- main_template.tex
+|       `-- preamble_template.tex
+|-- modules
+|   `-- 01_introduction
+|       |-- README.md
+|       |-- images
+|       |-- main.tex
+|       |-- preamble.tex
+|       `-- references.bib
+|-- requirements.txt
+|-- scripts
+|   |-- README.md
+|   |-- build_course.py
+|   |-- config.yaml
+|   |-- interactive_builder.py
+|   |-- main.py
+|   |-- requirements.txt
+|   |-- tools
+|   |   `-- __init__.py
+|   `-- utils
+|       |-- __init__.py
+|       |-- file_manager.py
+|       |-- latex_compiler.py
+|       |-- module_validator.py
+|       `-- pdf_merger.py
+`-- setup.py
+\end{verbatim}
+\subsection{Available scripts}
+Currently, there are two distinct scripts folders. The first, located inside the
+global folder, contains py scripts focused on project maintenance, while the
+second receives all py scripts user-oriented.
+\subsubsection{Global - Scripts}
+\begin{description}
+    \item[main.py] Presents a selection menu to all available scripts inside the
+        tools folder.
+    \item[create\_module.py] Allows the automatic creation of a new Module
+        folder. Includes the basic structure, with a README file, main and
+        preamble tex files, images folder and a local references.bib file.
+    \item[set\_vim\_config.py] Change the user .vimrc file to a custom pre-made
+        one, that can be found inside the templates folder. Allows VimTeX
+        and UltiSnips integration, alongside keyboard shortcuts for easier
+        navigation.
+\end{description}
+\subsubsection{Main folder - Scripts}
 \begin{example}
 Practical example with real genomic data.
 \end{example}
