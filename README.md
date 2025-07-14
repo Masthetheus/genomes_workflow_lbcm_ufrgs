@@ -8,6 +8,8 @@ Repository contains mainly MD files aimed to structure a easy to start approach 
 
 1. [About the Project](#about-the-project)
 2. [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Repository Installation](#repository_installation)
 3. [Repository Structure](#repository-structure)
 4. [Genomic Workflows](#genomic-workflows)
     - [Genome Assembly](#genome-assembly)
@@ -22,47 +24,85 @@ Repository contains mainly MD files aimed to structure a easy to start approach 
 
 ## About the Project
 
-A general repository to store mainly MD files compiling instructions of common bioinformatics tools used in genome assembly and annotation. It aims to help LBCM students to start on the field in a more approachable way but maintaining their autonomy. In this sense, Linux general usage, environment manipulation and doc's referral practice is still present and highly encouraged to be further explored.
+A general repository to store mainly .tex files compiling instructions of common bioinformatics tools used in genome assembly and annotation. It aims to help LBCM students to start on the field in a more approachable way but maintaining their autonomy. In this sense, Linux general usage, environment manipulation and doc's referral practice is still present and highly encouraged to be further explored.
 
 ## Getting Started
 
-Instructions for new users:
-- How to access and navigate the repository
-- Requirements (if any)
-- How to contribute new documentation
+### Prerequisites
+
+- Linux is strongly recommended and used as base to all logic present in the current workflow.
+- [Git](https://git-scm.com/)
+- [Python 3.8+](https://www.python.org/)
+- [pip](https://github.com/pypa/pip)
+- [conda](https://docs.conda.io/en/latest/) (recommended)
+- [LaTeX](https://www.latex-project.org/get/) (recommended only for direct work on the project)
+
+**Obs:** Further detailed instructions on prerequisites installation can be found on the given links above, and won't be approached directly during the current project. Although, the basics of them can be found on the Introduction module.
+
+### Repository Installation
+
+- The repository can be cloned as seen below:
+```bash
+git clone https://github.com/Masthetheus/genomes_workflow_lbcm_ufrgs.git
+cd genomes_workflow_lbcm_ufrgs
+```
+- The needed python packages can then be installed with:
+```bash
+pip install -r requirements.txt
+```
+- As an alternative, a conda environment can be set. (#WORK IN DEVELOPMENT)
 
 ## Repository Structure
 
-Explanation of the organization of folders and files within the repository, including the location of:
-- Workflow guides
-- Tool instructions
-- Example datasets (if any)
-- Contributed notes
+```
+genomes_workflow_lbcm_ufrgs/
+├── README.md
+├── global
+│   ├── bibliography
+│   ├── scripts
+│   └── templates
+├── modules
+│   └── 01_introduction
+├── requirements.txt
+├── scripts
+│   ├── README.md
+│   ├── build_course.py
+│   ├── config.yaml
+│   ├── interactive_builder.py
+│   ├── main.py
+│   ├── requirements.txt
+│   └── utils
+└── setup.py
+```
+- **modules/**: Folder containing one subfolder per chapter, that includes its README, main and reference files.
+- **global/**: Global files directed to modules constructions and maintenence.
+- **global/scripts/**: Scripts aimed to help automate the process of module and directory construction.
+- **global/templates/**: Base templates for module creation.
+- **scripts/**:  Scripts aimed at base user usage, e.g course creation for user visualization.
+- **scripts/utils/**: Utilities modules for script correct operation.
+- **setup.py**:
+- **requirements.txt**: #WORK IN DEVELOPMENT
 
 ## Genomic Workflows
 
 ### Genome Assembly
 
-- Overview of genome assembly
-- Step-by-step guides for common assembly tools
-- Troubleshooting tips
+- #WORK IN DEVELOPMENT
 
 ### Genome Annotation
 
-- Overview of annotation processes
-- Instructions for running annotation pipelines
-- Tips and common pitfalls
+- #WORK IN DEVELOPMENT
 
 ## Bioinformatics Tools
 
-A list and brief description of common tools covered in this repository, with links to their dedicated instruction files:
+#WORK IN DEVELOPMENT
 - [Tool 1](./tools/tool1.md)
 - [Tool 2](./tools/tool2.md)
 - [Add more as needed...]
 
 ## Best Practices
 
-General advice for reproducible research, data management, and scripting.
+#WORK IN DEVELOPMENT
 
 ## Contributing
 
