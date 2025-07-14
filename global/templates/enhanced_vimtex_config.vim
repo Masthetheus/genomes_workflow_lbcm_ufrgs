@@ -1,19 +1,19 @@
 " Enhanced VimTeX Configuration for Beautiful LaTeX Notes
 " Based on Gilles Castel's approach with NotesTeX aesthetics
 
-" Check if required plugins are available
-let s:has_vimtex = exists('g:vimtex_enabled') || exists('*vimtex#init')
-let s:has_ultisnips = exists('g:UltiSnipsExpandTrigger')
-
-if !s:has_vimtex
-    echo "Warning: VimTeX plugin not found. Please install it with your plugin manager."
-    echo "For vim-plug, add: Plug 'lervag/vimtex'"
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-if !s:has_ultisnips
-    echo "Warning: UltiSnips plugin not found. Please install it with your plugin manager."
-    echo "For vim-plug, add: Plug 'SirVer/ultisnips'"
-endif
+call plug#begin()
+
+Plug 'lervag/vimtex'
+
+Plug 'SirVer/ultisnips'
+
+call plug#end()
 
 " VimTeX configuration
 let g:tex_flavor='latex'
