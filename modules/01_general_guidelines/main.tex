@@ -1,0 +1,225 @@
+% Genomes Workflow Module Template - LBCM UFRGS
+% Based on NotesTeX and Gilles Castel's aesthetic approach
+% Module: 01 - General guidelines and workflow organization
+% Date: DATE_PLACEHOLDER
+
+\documentclass[a4paper,11pt]{article}
+
+% Use ONLY the beautiful notes preamble for notes
+\input{preamble.tex}
+
+\title{
+    \vfill
+    \textcolor{noteblue}{\Huge Genomes Workflow - LBCM}\\
+    \vspace{5.0cm}
+    \textcolor{sidenotegray}{\huge 01 - General guidelines and workflow organization}\\
+    \vspace{1.5cm}
+    \textcolor{sidenotegray}{\LARGE }\\
+    \vspace{5.0cm}
+    \textcolor{sidenotegray}{\large \today}
+    \vfill
+}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\newpage
+\section{Overview}
+
+\subsection{Module Objectives}
+\sn{Learning goals}
+
+This module covers:
+\begin{itemize}
+    \item Basic Linux terminal concepts and usage.
+    \item Conda environment logic.
+    \item Conda basic usage.
+    \item Recommended bioinformatics project organization.
+\end{itemize}
+
+\section{The Linux question}
+
+\subsection{}
+\sn{Why this matters}
+
+Key concepts:
+\begin{itemize}
+    \item Important biological principle \cite{example2024}
+    \item Computational approach \citep{author2024}
+    \item Related methods \citet{smith2024}
+\end{itemize}
+
+\begin{definition}
+Key term or concept definition from \cite{author2024}.
+\end{definition}
+
+\section{Tools \& Software}
+
+\subsection{Required Software}
+\sn{Installation notes}
+
+\begin{itemize}
+    \item \textbf{Primary tool:} Tool name and version
+    \item \textbf{Dependencies:} Required libraries/packages
+    \item \textbf{Optional:} Additional helpful tools
+\end{itemize}
+
+\subsection{Installation Guide}
+\begin{lstlisting}[language=bash, caption=Software installation]
+# Installation commands
+conda install -c bioconda tool_name
+# or
+sudo apt-get install package_name
+\end{lstlisting}
+
+\section{Workflow \& Methods}
+
+\subsection{Step-by-Step Protocol}
+\sn{Key parameters}
+
+\begin{enumerate}
+    \item \textbf{Data preparation:} Input requirements and formatting
+    \item \textbf{Quality control:} Initial data assessment
+    \item \textbf{Main analysis:} Core computational steps
+    \item \textbf{Result interpretation:} Output analysis and validation
+\end{enumerate}
+
+\begin{example}
+Practical example with real genomic data.
+\end{example}
+
+\section{Practical Examples}
+
+\subsection{Example 1: Basic Analysis}
+\sn{Input/output files}
+
+\begin{itemize}
+    \item \textbf{Input:} Sample data description
+    \item \textbf{Command:} Based on approach from \cite{example2024}
+    \item \textbf{Output:} Expected results and file formats
+\end{itemize}
+
+\begin{lstlisting}[language=bash, caption=Basic command example]
+# Example command with typical genomic data
+tool_name -i input_file.fasta -o output_file.txt --parameter value
+\end{lstlisting}
+
+\subsection{Example 2: Advanced Usage}
+\sn{Complex parameters}
+
+\begin{lstlisting}[language=bash, caption=Advanced analysis pipeline]
+# Multi-step analysis pipeline
+step1_tool input.fasta | step2_tool --param1 value1 > intermediate.txt
+step3_tool intermediate.txt --param2 value2 -o final_result.txt
+\end{lstlisting}
+
+\section{Results \& Interpretation}
+
+\subsection{Output Files}
+\sn{File formats}
+
+Common output formats and their interpretation:
+\begin{itemize}
+    \item \textbf{Format 1:} Description and typical contents
+    \item \textbf{Format 2:} When and how to use this output
+    \item \textbf{Quality metrics:} How to assess result quality
+\end{itemize}
+
+\begin{remark}
+Important note about result interpretation following \citet{author2024}.
+\end{remark}
+
+\section{Scripts \& Code}
+
+\subsection{Helper Scripts}
+\begin{lstlisting}[language=Python, caption=Data processing script]
+#!/usr/bin/env python3
+"""
+Helper script for genomic data processing
+Usage: python script.py input.fasta output.txt
+"""
+
+def process_sequences(input_file, output_file):
+    """Process genomic sequences"""
+    with open(input_file, 'r') as f:
+        sequences = f.read()
+    
+    # Processing logic here
+    processed = sequences.upper()
+    
+    with open(output_file, 'w') as f:
+        f.write(processed)
+
+if __name__ == "__main__":
+    import sys
+    process_sequences(sys.argv[1], sys.argv[2])
+\end{lstlisting}
+
+\subsection{Quality Control}
+\begin{lstlisting}[language=bash, caption=QC pipeline]
+#!/bin/bash
+# Quality control pipeline for genomic data
+
+# Check file format
+file_format_check.py $INPUT_FILE
+
+# Basic statistics
+sequence_stats.py $INPUT_FILE > stats.txt
+
+# Quality assessment
+quality_assessment_tool $INPUT_FILE --output qc_report.html
+\end{lstlisting}
+
+\section{Troubleshooting \& Best Practices}
+
+\subsection{Common Issues}
+\sn{Error solutions}
+
+\begin{itemize}
+    \item \textbf{Memory errors:} Reduce dataset size or increase available RAM
+    \item \textbf{Format issues:} Check input file formatting and encoding
+    \item \textbf{Parameter tuning:} Guidelines for optimization
+\end{itemize}
+
+\subsection{Best Practices}
+\begin{itemize}
+    \item \textbf{Data backup:} Always keep original data copies
+    \item \textbf{Version control:} Track analysis versions and parameters
+    \item \textbf{Documentation:} Record all analysis steps and decisions
+    \item \textbf{Reproducibility:} Use consistent environments and seeds
+\end{itemize}
+
+\begin{references}
+    \item Key papers: \cite{example2024,author2024,smith2024}
+    \item Software documentation: [Tool official docs]
+    \item Related modules: [Other workflow modules]
+\end{references}
+
+\section{Exercises \& Next Steps}
+
+\begin{itemize}
+    \item \todo{Practice with provided sample data}
+    \item \todo{Try different parameter settings}
+    \item \important{Apply to your own genomic dataset}
+    \item \todo{Explore advanced features}
+\end{itemize}
+
+\begin{notes}
+Additional observations and module-specific notes...
+
+\highlight{Key insight}: Connection between this tool and genome annotation pipeline
+
+\idea{Extension}: Integration with other bioinformatics tools in the workflow
+
+\end{notes}
+
+% BIBLIOGRAPHY
+\newpage
+\printbibliography
+
+\end{document}

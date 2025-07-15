@@ -1,7 +1,7 @@
 import os
 import shutil
 
-def create_module(folder_name, module_title, module_subtitle):
+def create_module(folder_name, module_title, module_subtitle=None):
     # Paths
     base_path = os.getcwd()
     templates_path = os.path.join(base_path, "global/templates")
@@ -43,10 +43,18 @@ def create_module(folder_name, module_title, module_subtitle):
         with open(tex_template_path, "r") as fin:
             tex_content = fin.read()
         tex_content = tex_content.replace("MODULE_NAME_PLACEHOLDER", module_title)
-        tex_content = tex_content.replace("MODULE_SUBTITLE_PLACEHOLDER", module_subtitle)
+        
+        # Handle optional subtitle
+        if module_subtitle:
+            tex_content = tex_content.replace("MODULE_SUBTITLE_PLACEHOLDER", module_subtitle)
+        else:
+            # Remove the subtitle placeholder or replace with empty string
+            tex_content = tex_content.replace("MODULE_SUBTITLE_PLACEHOLDER", "")
+            
         with open(tex_path, "w") as fout:
             fout.write(tex_content)
-        print(f"main.tex file created for '{folder_name}' with title '{module_title}' and subtitle '{module_subtitle}'.")
+        print(f"main.tex file created for '{folder_name}' with title '{module_title}'" + 
+              (f" and subtitle '{module_subtitle}'" if module_subtitle else "") + ".")
     else:
         print(f"main template not found at: {tex_template_path}")
 
@@ -70,7 +78,8 @@ def get_parser():
     parser = argparse.ArgumentParser(description="Create a new module directory with templates.")
     parser.add_argument("folder_name", help="Name of the module folder to create.")
     parser.add_argument("module_title", help="Title of the module (for LaTeX).")
-    parser.add_argument("module_subtitle", help="Subtitle of the module (for LaTeX).")
+    parser.add_argument("--subtitle", "-s", dest="module_subtitle", 
+                       help="Subtitle of the module (for LaTeX). Optional.", default=None)
     return parser
 
 def main():
