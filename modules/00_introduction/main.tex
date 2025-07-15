@@ -1,0 +1,145 @@
+% Genomes Workflow Module Template - LBCM UFRGS
+% Based on NotesTeX and Gilles Castel's aesthetic approach
+% Module: 00 - Introduction
+% Date: DATE_PLACEHOLDER
+
+\documentclass[a4paper,11pt]{article}
+
+% Use ONLY the beautiful notes preamble for notes
+\input{preamble.tex}
+
+\title{
+    \vfill
+    \textcolor{noteblue}{\Huge Genomes Workflow - LBCM}\\
+    \vspace{5.0cm}
+    \textcolor{sidenotegray}{\huge 00 - Introduction}\\
+    \vspace{1.5cm}
+    \textcolor{sidenotegray}{\LARGE General guidelines}\\
+    \vspace{5.0cm}
+    \textcolor{sidenotegray}{\large \today}
+    \vfill
+}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\newpage
+\section{Overview}
+
+\subsection{Module Objectives}
+\sn{Learning goals}
+
+This module covers:
+\begin{itemize}
+    \item Repository organization.
+    \item Available scripts.
+    \item General pipeline structure.
+    \item Modules organization.
+\end{itemize}
+
+\section{Background}
+
+\subsection{General Context}
+\sn{Why this matters}
+
+Key concepts:
+\begin{itemize}
+    \item The integration between biological knowledge and IT or
+        bioinformatics tools can be harsh.
+    \item The presence and interference of multiple key concepts of each area
+        creates a big wall on newcomers.
+    \item Explain key features and provide support in a organized way can help
+        to circumvent this initial barrier.
+\end{itemize}
+
+\section{Workflow \& Methods}
+
+\subsection{The repository}
+\sn{Key parameters}
+The repository is structured aiming to facilitate user operation and base codes
+and modules maintenance. The main separation happens in the global folder, that
+stores templates, bibliography files and scripts for project managers usage.
+\begin{verbatim}
+genomes_workflow_lbcm_ufrgs
+|-- CHANGELOG.md
+|-- README.md
+|-- global
+|   |-- bibliography
+|   |-- scripts
+|   `-- templates
+|-- modules
+|   `-- 00_introduction
+|-- requirements.txt
+|-- scripts
+|   |-- README.md
+|   |-- build_course.py
+|   |-- config.yaml
+|   |-- interactive_builder.py
+|   |-- main.py
+|   |-- requirements.txt
+|   `-- utils
+`-- setup.py
+\end{verbatim}
+
+\subsection{Available scripts}
+\subsubsection{Global Scripts}
+\begin{itemize}
+    \item \textbf{main.py:} Terminal choice selection to execute the possible
+        tools scripts, all related to repository creation and maintenance.
+    \item \textbf{tools/create\_module.py:} Creates a new module under the
+        \textbf{modules/} folder, based on the available template file named
+        main\_template.tex and preamble\_template.tex. Also creates a base
+        README.md file and an images folder. Receives the name of the module to
+        be created(folder name, supposed to be short and not formated), the
+        title as intended to be displayed to the final user and a subtitle, if
+        needed. 
+    \item \textbf{tools/set\_vim\_config.py:} Changes the current .vimrc file to
+        a custom one, that can be found on the \textbf{global/templates/}
+        folder. Includes UltiSnips and VimTeX shortcuts and QOL settings for
+        module production.
+\end{itemize}
+\subsubsection{Scripts for General Users}
+\begin{itemize}
+    \item \textbf{build\_course.py:} General command line interface for course
+        building. Accepts single modules, complete courses or custom module
+        selection. Imports configuration from the config.yaml file and receives
+        user arguments depending on final intention.
+    \item \textbf{interactive\_builder.py:} Similar in function to the script
+        above, although it provides a simple interface to facilitate user usage
+        and interaction.
+\end{itemize}
+\subsection{General pipeline structure}
+#WORK IN DEVELOPMENT
+\subsection{Modules organization}
+\begin{description}
+    \item[00 - Introduction] - Similar to the main README.md file, this module
+        aims to give a general perception on the repository and what composes
+        it. Also provides some general explanation on scripts and modules
+       currently implemented.
+    \item[01 - General guidelines and workflow organization] - This module
+        presents a short introduction to Linux logic and terminal usage, as well
+        as conda environment creation and logic. Lastly approaches some good
+        practices on workflow organization.
+\end{{description}
+\section{Best Practices}
+\begin{itemize}
+    \item \textbf{Data backup:} Always keep original data copies, especially
+        when working on sequenced data.
+    \item \textbf{Version control:} Track analysis versions and parameters if
+        working on the repository construction and maintenance.
+    \item \textbf{Documentation:} Record all analysis steps and decisions if
+        working directly on the project.
+    \item \textbf{Reproducibility:} Use consistent environments, seeds and
+        terminology, referencing external bibliography when necessary.
+\end{itemize}
+
+% BIBLIOGRAPHY
+\newpage
+\printbibliography
+
+\end{document}
