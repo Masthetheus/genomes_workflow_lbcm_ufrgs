@@ -1,5 +1,10 @@
 # Genomes Workflow - LBCM - UFRGS
 
+![Project Status](https://img.shields.io/badge/status-active-brightgreen)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange)
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
+![Platform](https://img.shields.io/badge/platform-linux-lightgrey)
+
 Repository contains mainly MD files aimed to structure a easy to start approach to genome annotation and assembly.
 
 ---
@@ -102,19 +107,59 @@ genomes_workflow_lbcm_ufrgs/
 
 ## Best Practices
 
-#WORK IN DEVELOPMENT
+- When opening an issue, provide the most information possible about the bug found or feature implementation suggestion.
+- When working actively on the project, pay attention to commit messages and remember to update the documentation as needed.
+- Manage the pip packages needed with conda to avoid major versioning problems.
 
 ## Contributing
 
-Guidelines for contributing new guides, corrections, or improvements:
-- How to submit a pull request
-- Code of conduct
-- Acknowledgement of contributors
+We welcome contributions! Here’s how you can help:
+
+### 1. Reporting Issues
+
+- Found a bug or typo? Please [open an issue](https://github.com/Masthetheus/genomes_workflow_lbcm_ufrgs/issues).
+- Suggestions for new modules or improvements are also welcome.
+
+### 2. Submitting Changes
+
+1. **Fork** the repository.
+2. **Create a new branch** for your feature or fix:
+```bash
+    git checkout -b my-feature
+```
+3. **Make your changes** (add and update documentation, scripts, etc.).
+4. **Commit** and **push** to your fork:
+```bash
+    git add .
+    git commit -m "Describe your change"
+    git push origin my-feature
+```
+5. **Open a Pull Request** on GitHub and describe your changes.
+
+### 3. Adding New Documentation or Modules
+
+- Place new workflow modules in the `modules/` directory.
+- Add new tool instructions in the `tools/` directory.
+- Update the `README.md` index if you add new major sections.
+- Remember to update the implemented module's `README.md` file.
+
+### 4. Code of Conduct
+
+- Please be respectful and constructive in all interactions.
+- Remember to add the correct references when needed and providing new information.
+
+### 5. Acknowledgement
+
+- All contributors will be listed in the [Acknowledgements](#acknowledgements) section.
+
+---
+
+*Thank you for helping improve this resource!*
 
 ## References & Further Reading
 
-Curated list of useful resources and references for deeper learning.
+#WORK IN DEVELOPMENT
 
 ## Contact
 
-Information for reaching out to repository maintainers or LBCM coordinators.
+#TO BE IMPLEMENTED
