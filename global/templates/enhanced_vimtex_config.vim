@@ -1,6 +1,20 @@
 " Enhanced VimTeX Configuration for Beautiful LaTeX Notes
 " Based on Gilles Castel's approach with NotesTeX aesthetics
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+
+Plug 'lervag/vimtex'
+
+Plug 'SirVer/ultisnips'
+
+call plug#end()
+
 " VimTeX configuration
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
@@ -24,16 +38,19 @@ let g:vimtex_compiler_latexmk = {
 set conceallevel=2
 let g:tex_conceal='abdmg'
 
-" UltiSnips configuration
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', '~/.vim/UltiSnips']
+" UltiSnips configuration (only if plugin is available)
+if s:has_ultisnips
+    let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+    let g:UltiSnipsSnippetDirectories = ['UltiSnips', '~/.vim/UltiSnips']
+endif
 
-" Spell checking
-setlocal spell
-set spelllang=en_us
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+" Spell checking disabled by default
+" Uncomment the lines below if you want spell checking:
+" setlocal spell
+" set spelllang=en_us
+" inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Enhanced LaTeX-specific keybindings
 augroup LaTeX
@@ -67,17 +84,38 @@ augroup LaTeX
     autocmd FileType tex nnoremap <buffer> <leader>sb :call EditBibliography()<CR>
 augroup END
 
-" Function to create today's note
+" Function to create today's note (with better error handling)
 function! CreateTodayNote()
     let today = strftime("%Y-%m-%d")
     let note_file = "notes/note-" . today . ".tex"
     
+    " Create notes directory if it doesn't exist
+    if !isdirectory("notes")
+        call mkdir("notes", "p")
+    endif
+    
     if filereadable(note_file)
         execute "edit " . note_file
     else
-        let paper_name = fnamemodify(getcwd(), ':t')
-        call system("cd " . getcwd() . " && ../../gilles_research_manager.sh create-note " . paper_name . " " . today)
+        " Create a simple note template instead of relying on external script
+        let template_content = [
+            \ "% Note for " . today,
+            \ "\\documentclass{article}",
+            \ "\\usepackage[utf8]{inputenc}",
+            \ "\\title{Notes - " . today . "}",
+            \ "\\author{Research Notes}",
+            \ "\\date{" . today . "}",
+            \ "",
+            \ "\\begin{document}",
+            \ "\\maketitle",
+            \ "",
+            \ "% Your notes here",
+            \ "",
+            \ "\\end{document}"
+            \ ]
+        call writefile(template_content, note_file)
         execute "edit " . note_file
+        echo "Created new note: " . note_file
     endif
 endfunction
 
@@ -121,22 +159,66 @@ function! InsertHighlight()
     endif
 endfunction
 
-" Function to edit sections
+" Function to edit sections (with better error handling)
 function! EditSection(section)
     let section_file = "sections/" . a:section . ".tex"
+    
+    " Create sections directory if it doesn't exist
+    if !isdirectory("sections")
+        call mkdir("sections", "p")
+    endif
+    
     if filereadable(section_file)
         execute "edit " . section_file
     else
-        echo "Section file not found: " . section_file
+        " Create a simple section template
+        let template_content = [
+            \ "% " . toupper(a:section) . " section",
+            \ "\\section{" . toupper(a:section[0]) . a:section[1:] . "}",
+            \ "",
+            \ "% Content for " . a:section . " section goes here",
+            \ ""
+            \ ]
+        call writefile(template_content, section_file)
+        execute "edit " . section_file
+        echo "Created new section: " . section_file
     endif
 endfunction
 
-" Function to edit bibliography
+" Function to edit bibliography (with better error handling)
 function! EditBibliography()
-    if filereadable("references.bib")
-        execute "edit references.bib"
-    else
-        echo "Bibliography file not found: references.bib"
+    let bib_files = ["references.bib", "bibliography.bib", "refs.bib"]
+    let found = 0
+    
+    for bib_file in bib_files
+        if filereadable(bib_file)
+            execute "edit " . bib_file
+            let found = 1
+            break
+        endif
+    endfor
+    
+    if !found
+        " Create a new bibliography file
+        let new_bib = "references.bib"
+        let template_content = [
+            \ "% Bibliography file",
+            \ "% Add your references here",
+            \ "",
+            \ "% Example entry:",
+            \ "% @article{author2023,",
+            \ "%   author = {Author Name},",
+            \ "%   title = {Article Title},",
+            \ "%   journal = {Journal Name},",
+            \ "%   year = {2023},",
+            \ "%   volume = {1},",
+            \ "%   pages = {1--10}",
+            \ "% }",
+            \ ""
+            \ ]
+        call writefile(template_content, new_bib)
+        execute "edit " . new_bib
+        echo "Created new bibliography: " . new_bib
     endif
 endfunction
 
@@ -223,6 +305,11 @@ function! LatexFoldText()
 endfunction
 
 echo "Enhanced VimTeX configuration loaded for beautiful LaTeX notes!"
+echo "Requirements:"
+echo "  - VimTeX plugin: Plug 'lervag/vimtex'"
+echo "  - UltiSnips plugin: Plug 'SirVer/ultisnips'"
+echo "  - Zathura PDF viewer (for viewing PDFs)"
+echo ""
 echo "Key mappings:"
 echo "  <leader>ll  - Compile"
 echo "  <leader>lv  - View PDF"
