@@ -41,6 +41,7 @@ A general repository to store mainly .tex files compiling instructions of common
 - [pip](https://github.com/pypa/pip)
 - [conda](https://docs.conda.io/en/latest/) (recommended)
 - [LaTeX](https://www.latex-project.org/get/) (recommended only for direct work on the project)
+- [PyYAML](https://pyyaml.org/) (for metadata management)
 
 **Obs:** Further detailed instructions on prerequisites installation can be found on the given links above, and won't be approached directly during the current project. Although, the basics of them can be found on the Introduction module.
 
@@ -61,13 +62,16 @@ pip install -r requirements.txt
 
 ```
 genomes_workflow_lbcm_ufrgs/
+├── CHANGELOG.md
 ├── README.md
 ├── global
 │   ├── bibliography
 │   ├── scripts
 │   └── templates
+├── main.log
 ├── modules
-│   └── 01_introduction
+│   ├── 00_introduction
+│   └── 01_general_guidelines
 ├── requirements.txt
 ├── scripts
 │   ├── README.md
@@ -85,7 +89,7 @@ genomes_workflow_lbcm_ufrgs/
 - **global/templates/**: Base templates for module creation.
 - **scripts/**:  Scripts aimed at base user usage, e.g course creation for user visualization.
 - **scripts/utils/**: Utilities modules for script correct operation.
-- **setup.py**:
+- **setup.py**:#WORK IN DEVELOPMENT
 - **requirements.txt**: #WORK IN DEVELOPMENT
 
 ## Genomic Workflows

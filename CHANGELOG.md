@@ -3,14 +3,21 @@ All notable changes to the project and repository will be documented in this fil
 
 ## [Unreleased]
 ### In Progress
-- modules: Introduction section completion.
+- modules: Introduction section completion
 - modules: Modules on basic system usage (linux and conda)
+- scripts: Allow preamble "refreshing"
 
 ### Coming Soon
 - Complete .tex/.pdf Introduction section.
 - Modules on basic system usage.
 
-## [0.1.0] - 2025-06-15
+## [0.2.0] - 2025-07-17
+### Added
+- Metadata support for modules
+- Scripts for refreshing and creating metadata
+- Metadata template and automatic generation with module creation implemented
+
+## [0.1.0] - 2025-07-15
 ### Added
 - Basic project structure
 - Base project documentation

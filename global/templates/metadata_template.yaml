@@ -1,0 +1,9 @@
+title: "{{MODULE_TITLE}}"
+folder: "{{FOLDER_NAME}}"
+subtitle: "{{MODULE_SUBTITLE}}"
+author: "LBCM Team"
+date: "{{DATE}}"
+references:
+  - "{{REFERENCES}}"
+tags:
+  - "{{TAG1}}"
