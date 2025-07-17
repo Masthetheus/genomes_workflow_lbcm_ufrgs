@@ -44,21 +44,61 @@ This module covers:
 \end{itemize}
 
 \section{The Linux question}
+Taking in consideration the variety of tools available, their functionalities
+and general comprehension around systems and workflow organization, the choice
+of operational system constitutes a central point. \par 
+In multiple fronts, Linux get's the spotlight. One big advantage is the cost to
+install and implement the OS: Zero. With a GPL License, everyone has the right
+to change and redistribute it, following the condition that the code should stay
+available (\cite{garrelsIntroductionLinux2008}). It's portability, security and
+the existence of a large and committed community all helps on the final OS
+choice for general Bioinformatics research projects.\par
+In the current chapter, we intend to present basics concepts of the Linux
+ecosystem. Terminal operation will also be included, since it's intrinsic
+relation to the system core functionalities. Finally, a brief Linux Mint
+presentation and guidelines shall be pointed, as it's the initial distro of
+choice.\par
+\begin{remarkbox}
+    For further and in depth comprehension of base Linux related topics, it is
+    advised to check \cite{garrelsIntroductionLinux2008}.
+\end{remarkbox}
+\subsection{So... What is it?}
+With the crescent wave on tech development, the fact that some systems were
+directly developed for specific hardware started to weight a ton on user
+instruction and final cost of the products. A team of developers then started
+working on what would come to be the \textbf{"UNIX"} project. This operational system
+brought to the table the ability of code to be recycled, the use of
+a higher programming language then assembly (C) and an unique overall
+simplicity (\cite{garrelsIntroductionLinux2008}).\par
+\begin{definitionbox}
+   UNIX refers to a family of operational systems based on the final product of
+   the original UNIX project. They aim to be simple, elegant and allow code
+   recycling. To achieve their goals, modular logic is applied, alongside
+   a hierarchical file system and innate command line interface. 
+\end{definitionbox}
+Then, home PC's started getting traction, in a way that running UNIX on them
+became a possibility. In this context, the idea of a free system directly
+connected to the original \textbf{UNIX} would led to the birth of \textbf{Linux}
+as a freely available OS.
+\begin{definitionbox}
+    Linux is an open source OS based on UNIX. Is composed mainly by
+    (\cite{WhatLinux2025}):
+    \begin{description}
+        \item[Bootloader:] Manages the boot process of the computer.
+        \item[Kernel:] The actual \textbf{Linux}. Manages the CPU, memory and
+            peripheral devices.
+        \item[Initialization system:] Sub-system that controls daemons.
+        \item[Daemons:] Background services started up during or after boot.
+        \item[Graphical server:] Sub-system for graphical display.
+        \item[Desktop environment:] Interfaces for direct user interaction.
+        \item[Applications:] Any software that can be installed on the system
+            and offer some service or act as a tool.
+    \end{description}
+\end{definitionbox}
+\subsection{Command Line Terminal}
+\subsection{Linux and Bioinformatics}
 
-\subsection{}
-\sn{Why this matters}
-
-Key concepts:
-\begin{itemize}
-    \item Important biological principle \cite{example2024}
-    \item Computational approach \citep{author2024}
-    \item Related methods \citet{smith2024}
-\end{itemize}
-
-\begin{definition}
-Key term or concept definition from \cite{author2024}.
-\end{definition}
-
+\subsection{Choosing a Distro}
 \section{Tools \& Software}
 
 \subsection{Required Software}
@@ -194,6 +234,12 @@ quality_assessment_tool $INPUT_FILE --output qc_report.html
     \item \textbf{Documentation:} Record all analysis steps and decisions
     \item \textbf{Reproducibility:} Use consistent environments and seeds
 \end{itemize}
+
+\begin{references}
+    \item Key papers: \cite{example2024,author2024,smith2024}
+    \item Software documentation: [Tool official docs]
+    \item Related modules: [Other workflow modules]
+\end{references}
 
 \section{Exercises \& Next Steps}
 
