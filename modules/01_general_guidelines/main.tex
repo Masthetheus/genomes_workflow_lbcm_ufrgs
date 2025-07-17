@@ -95,10 +95,90 @@ as a freely available OS.
             and offer some service or act as a tool.
     \end{description}
 \end{definitionbox}
-\subsection{Command Line Terminal}
+\subsection{Choosing a Distro}
+\subsection{Command Line and Terminal operation}
+When using Linux based OS's, one specific "feature" get's the spotlight on the
+eyes of newcomers: the command line. Basically all tasks done via GUI's can be
+also executed via command line, usually mediated with a terminal interface.\par
+Taking this in mind, understanding the relevance and basic navigation of the
+command line, allows an overall better and more efficient system operation. In
+this sense, the present section aims to establish broad concepts and present
+general guidelines on the subject.
+\begin{definitionbox}
+    The term command line, actually refers to the \textbf{shell}. It consists in
+    a program whose purpose is to take keyboard commands and direct them to the
+    OS for execution. In Linux systems, the core \textbf{shell} usually is
+    \textbf{bash}. \textbf{Terminals} are interfaces that allow users with a GUI to
+    interact with the \textbf{shell}(\cite{shottsLinuxCommandLine2024}).
+\end{definitionbox}
+\subsubsection{Basics}
+Nothing better to learn than getting punched by the subject. Let's experiment
+with basic terminal manipulation and usage. This section is an adaptation of the
+first chapter of \cite{shotssLinuxCommandLine2024}, in that sense, for further
+comprehension on the subject, please refer to the main source.\par
+First, open the terminal window (Ctrl+Alt+T on Linux Mint). What you are now
+seeing, I hope so, is something like:
+\begin{lstlisting}[language=bash]
+   [user@machine ~]$ 
+\end{lstlisting}
+Or, if using conda, probably something like:
+\begin{lstlisting}[language=bash]
+   (base)[user@machine ~]$ 
+\end{lstlisting}
+This is what we call the shell prompt, indicating that it's ready to receive
+orders. It informs you the current user name, the machine name and the current
+directory. Knowledge of the directory currently set is of extreme importance,
+and will be discussed on the next topic.\par
+Now, type out on the terminal the following:
+\begin{lstlisting}[language=bash]
+   [user@machine ~]$ ls
+\end{lstlisting}
+The expected output, is a listing of all files and folders available
+\textbf{directly} on the current work directory (I said it was important). Done,
+you executed your first bash command! The majority of commands supports what we
+call \textbf{arguments}, that can be present in different forms, like
+\textbf{flags}, \textbf{parameters} and \textbf{positional}. Let's try it out:
+\begin{lstlisting}[language=bash]
+   [user@machine ~]$ ls -a
+\end{lstlisting}
+\begin{definitionbox}
+    \begin{description}
+        \item[Argument:] A value, whose format can vary, that informs something
+            to the program that will be executed. In this way, he allows more
+            interaction and control of the user with the command itself.
+        \item[Flag:] A flag consists in an argument that doesn't have a value.
+            It usually appears in the format of a single dash followed by a letter
+            (-l, -a, etc).
+        \item[Parameter:] A parameter is an argument with an user determined
+            value. The base format of a parameter is two dashes followed by
+            a space and the value (like in -{}-help). In some cases, the space
+            is substituted for a equality symbol (like in -{}-output=/home). 
+        \item[Positional argument:] Indicates to the command which directory or
+            file it should  seek and operate. Usually presents itself with
+            a space from the rest of the arguments and the initial command
+            followed by the path to needed directory or file.
+    \end{description}
+\end{definitionbox}
+Now, you can see a lot more files are being shown. That's because the
+\textbf{-a} flag indicates to the command that you want to see \textbf{all}
+possible files and directories under the current work directory. So, now your
+output will also include the hidden files, marked by the presence of a single
+dot before the file name.\par
+\begin{remarkbox}
+In the majority of commands or terminal executed scripts, you can see a summary
+of possible flags and operational directions for command usage applying the
+-{}-help parameter or the -h flag.
+\end{remarkbox}
+\subsubsection{The file system tree}
+
+\subsubsection{Navigating with the shell}
+
+\subsubsection{Cheatsheet}
+
+
+
 \subsection{Linux and Bioinformatics}
 
-\subsection{Choosing a Distro}
 \section{Tools \& Software}
 
 \subsection{Required Software}

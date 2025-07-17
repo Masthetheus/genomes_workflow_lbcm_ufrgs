@@ -1,0 +1,144 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{garrelsIntroductionLinux2008}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1e91b51a4ff402ac33b870312be4e051}{%
+           family={Garrels},
+           familyi={G\bibinitperiod},
+           given={Machtelt},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {USA}%
+      }
+      \list{publisher}{1}{%
+        {Online}%
+      }
+      \strng{namehash}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{fullhash}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{fullhashraw}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{bibnamehash}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{authorbibnamehash}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{authornamehash}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{authorfullhash}{1e91b51a4ff402ac33b870312be4e051}
+      \strng{authorfullhashraw}{1e91b51a4ff402ac33b870312be4e051}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1.27}
+      \field{isbn}{1-59682-112-4}
+      \field{langid}{english}
+      \field{month}{6}
+      \field{title}{Introduction to {{Linux}}}
+      \field{urlday}{1}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{1}
+      \field{year}{2008}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /home/leveduras/Zotero/storage/8YX6B5QU/intro-linux.pdf
+      \endverb
+    \endentry
+    \entry{WhatLinux2025}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=edc9f0a5a5d57797bf68e37364743831}{%
+           family={Linux},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{fullhash}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{fullhashraw}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{bibnamehash}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{authorbibnamehash}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{authornamehash}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{authorfullhash}{edc9f0a5a5d57797bf68e37364743831}
+      \strng{authorfullhashraw}{edc9f0a5a5d57797bf68e37364743831}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{https://www.linux.com/what-is-linux/}
+      \field{journaltitle}{Linux}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{title}{What Is {{Linux}}}
+      \field{urlday}{16}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+    \endentry
+    \entry{shottsLinuxCommandLine2024}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d80065906a00d93ef6bc2b9b1efebb34}{%
+           family={Shotts},
+           familyi={S\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Online}%
+      }
+      \strng{namehash}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{fullhash}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{fullhashraw}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{bibnamehash}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{authorbibnamehash}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{authornamehash}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{authorfullhash}{d80065906a00d93ef6bc2b9b1efebb34}
+      \strng{authorfullhashraw}{d80065906a00d93ef6bc2b9b1efebb34}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{6}
+      \field{langid}{english}
+      \field{month}{11}
+      \field{title}{The {{Linux Command Line}}}
+      \field{urlday}{1}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{1}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /home/leveduras/Zotero/storage/MFW4K3YA/TLCL-24.11.pdf
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{author2024}
+  \missing{example2024}
+  \missing{shotssLinuxCommandLine2024}
+  \missing{smith2024}
+\endrefsection
+\endinput
+
