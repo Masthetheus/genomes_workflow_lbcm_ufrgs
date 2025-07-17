@@ -98,6 +98,33 @@
     fonttitle=\bfseries
 }
 
+\newtcolorbox{tipbox}{
+    colback=yellow!10!white,
+    colframe=orange!80!black,
+    title=Tip,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt
+}
+
+\newtcolorbox{cheatsheetbox}{
+    colback=gray!10!white,
+    colframe=black!60,
+    title=Cheat Sheet,
+    fonttitle=\bfseries,
+    boxrule=0.8pt,
+    sharp corners,
+    left=2mm,
+    right=2mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=8pt,
+    after skip=8pt,
+    halign=left,
+    valign=center,
+    fontupper=\footnotesize
+}
+
 % SIDENOTES (Notes-specific feature)
 \usepackage{marginnote}
 \renewcommand*{\marginfont}{\footnotesize\color{sidenotegray}}

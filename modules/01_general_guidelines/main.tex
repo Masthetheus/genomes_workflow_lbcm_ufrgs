@@ -96,6 +96,32 @@ as a freely available OS.
     \end{description}
 \end{definitionbox}
 \subsection{Choosing a Distro}
+A lifelong debates inside the Linux community revolves around which  Linux
+distribution to choose. One of the biggest reasons for such is that there's no
+correct answer. Multiple factors interfere in the final choice, and it can be
+largely personal too.\par
+Across the internet, a variety of guides and lists can be found on the subject.
+As it's not the central purpose of this project, we won't dive deeply in this
+matter. But, even though this creative freedom was taken, we will still, in
+a further chapter, approach one specific Linux distro, called Linux Mint. This
+decision was made to lay a foundation for some installation instructions, that
+can change based on the system of choice. Always when that's the case, it shall
+be pointed out.\par
+The choice of Mint itself was based purely on the fact that it is a distro with
+large support, reach and with a more reasonable learning curve for Linux
+newcomers.
+
+\begin{tipbox}
+    If you want to dive a little deeper on the Mint Distro, we recommend it's
+    User Guide (\cite{mintUserGuideLinux2024}). In it, you can find informations
+    on the system's update manager, multiboot, upgrades from older versions and
+    so on. The online official documentation Linux Mint webpage presents in
+    multiple format all available guides (\cite{mintLinuxMintDocumentation2025}). 
+\end{tipbox}
+
+
+\subsubsection{Installing Mint}
+
 \subsection{Command Line and Terminal operation}
 When using Linux based OS's, one specific "feature" get's the spotlight on the
 eyes of newcomers: the command line. Basically all tasks done via GUI's can be
@@ -169,15 +195,160 @@ In the majority of commands or terminal executed scripts, you can see a summary
 of possible flags and operational directions for command usage applying the
 -{}-help parameter or the -h flag.
 \end{remarkbox}
+\begin{tipbox}
+    For better quality of life, you can use the up and down arrow keys to
+    access the \textbf{terminal command history}. Try cycling through previous
+    commands and re-running them.
+\end{tipbox}
+This covers up our initial contact with the shell and terminal. As a way of
+saying goodbye, instead of closing the window in the traditional way, you can
+exit the shell by simply typing the below!
+\begin{lstlisting}[language=bash]
+   [user@machine ~]$ exit 
+\end{lstlisting}
 \subsubsection{The file system tree}
-
+Now, we are going to approach the file system tree of Linux based systems. The
+tree analogy says it all, the files are organized in what's called
+\textbf{hierarchical directory structure}(\cite{shottsLinuxCommandLine2024}). In
+this sense, the system has a base for the tree, which we call the \textbf{root
+directory}. All others directories, that we can think as branches, and files,
+the leaves,  will be located inside this root.
+\begin{remarkbox}
+    Unix-like systems approach storage devices in a particular way. They're
+    treated as part of the single file system tree that begins on the root. That
+    being, any storage device that is connected to the system, is being
+    \textbf{mounted} in certain \textbf{point}(location) inside the main tree.
+\end{remarkbox}
+Below you can see some of the root base sub-directories
+(\cite{garrelsIntroductionLinux2008}).
+\begin{definitionbox}
+    \begin{description}
+        \item [bin:] Programs shared by the system, the system administrator and
+            all of the users.
+        \item [boot:] Stores the startup files and the kernel.
+        \item [etc:] Stores the most important system configuration files.
+        \item [home:] Acts as a "root" for the directories of common system 
+            users.
+        \item [lib:] Library files needed by the system and it's users.
+        \item [mnt:] Standard mount point for all external file systems.
+        \item [root:] The home directory of the system administrator.
+        \item [tmp:] Used to store temporary files, being cleaned up on reboot.
+        \item [usr:] Files and directories related to all user-related programs.
+    \end{description}
+\end{definitionbox}
+\begin{remarkbox}
+    \textbf{Caution!} The /root refers to the administrator home directory,
+    while / refers to the root directory.
+\end{remarkbox}
 \subsubsection{Navigating with the shell}
+Remember when was said that the current work directory is important? Now's the
+time to understand why. As was presented on the previous sub-section, Linux based
+systems operate on a single rooted file system. This implies that we can, from 
+inside the terminal, access all existent sub-directories and files, but also,
+that a hierarchical order is present. In this sense, we can conclude that the
+terminal needs to know where he stands on this tree to operate in the intended
+way.\par
+When opening a new terminal window, we saw that after the machine name, the
+\textbf{current working directory} is shown. This is where the terminal
+stands on the tree. The logic of this is easier comprehended by
+imagining as if we are at the CWD looking forward. We can see all connected
+branches and the current branch leaves and operate on them and theirs
+subsequent branches and leaves. We saw this with the ls command previously
+tested. \par
+Let's try some basic terminal navigation. Open a new terminal window (Ctrl+Alt+T on
+Linux Mint). Let's check the current work directory we are on:
 
-\subsubsection{Cheatsheet}
+\begin{lstlisting}[language=bash]
+   [user@machine ~]$ pwd
+\end{lstlisting}
+\begin{remarkbox}
+    The \textasciitilde {} directory is a short way to refer to the current
+    user home directory. It's the equivalent of /home/user/. You can test this
+    by opening a terminal window and typing the \textbf{pwd} command, that shows
+    the name of the current WD.
+\end{remarkbox}
+If all worked as supposed to, the current WD was shown on the screen. Great!
+Now, let's create a test directory inside the current one and make it our new
+WD. After that, let's run again the pwd command.
+\begin{lstlisting}[language=bash]
+   mkdir test
+   cd test
+   pwd
+\end{lstlisting}
+First, we used \textbf{mkdir} with the argument 'test' to create a new
+sub-directory called test. Then, the \textbf{cd} command allowed us to change
+our WD to the one specified as an argument, in this case 'test'. The output of
+\textbf{pwd} shows that we did, indeed, change the current "point of view" of
+our shell session.\par
+Still in this terminal, try to change again to the test folder. As you can see,
+the bash returns a message saying that he wasn't able to find such file or
+directory. This is because it really doesn't exists! At least not inside the WD.
+Remember, the Linux file system is hierarchical. In this sense, the command
+searches and operates based on the current work directory, seeing only the
+branches and leaves that are "inside" of it. This is extremely relevant, for
+when running scripts or other commands from a terminal, we need to make sure the
+correct WD is set, because other way, the shell call won't be able to find and
+operate on the intended files and directories.
+\begin{tipbox}
+    The cd usage can be simplified in some cases. If we want to go back to the
+    user home directory, we can use:
+\begin{lstlisting}[language=bash]
+  cd ~ 
+\end{lstlisting}
+    Also, the parent folder can be referred as two dots (..). Using this we can:
+\begin{lstlisting}[language=bash]
+   cd .. # goes up one parent folder
+   cd ../.. # goes up two parent folders, and so on 
+\end{lstlisting}
+\end{tipbox}
+\begin{remarkbox}
+    Linux based systems have what is called a \textbf{PATH environment
+    variable}. This consists on a system variable that can be changed if
+    necessary that contains a list of system paths. Anytime a shell session
+    begins and any command is executed, the system searches not only the  WD
+    and it's sub-directories and files, but also the paths included in this
+    environment variable.
+\end{remarkbox}
+\subsubsection{Commands}
+Aiming to provide some base commands, the user can see the cheat sheet below. In
+depth command usage, availability and functionality can be found on software or
+distribution documentation.
+\begin{cheatsheetbox}
+\textbf{Command:} \texttt{ls} \\
+\textbf{Description:} List files in current work directory.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{pwd} \\
+\textbf{Description:} List current work directory.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{cd 'new-directory'} \\
+\textbf{Description:} Changes current work directory.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{mkdir 'new-directory'} \\
+\textbf{Description:} Creates new directory inside current WD or on given path.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{cp 'file' 'copy-location'} \\
+\textbf{Description:} Creates a copy of certain files inside the given 
+location.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{mv 'current-location' 'new-location'} \\
+\textbf{Description:} Moves a file inside the file system.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{df} \\
+\textbf{Description:} Show current amount of free space on the disk drives.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{lsblk} \\
+\textbf{Description:} Show current mounted disks and their mount points.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{rm 'file-path'} \\
+\textbf{Description:} Removes the file indicated.
+\end{cheatsheetbox}
 
+\section{Git}
 
+\section{Conda}
 
-\subsection{Linux and Bioinformatics}
+\section{}
+
 
 \section{Tools \& Software}
 
