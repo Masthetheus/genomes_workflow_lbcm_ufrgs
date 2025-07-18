@@ -119,8 +119,175 @@ newcomers.
     multiple format all available guides (\cite{mintLinuxMintDocumentation2025}). 
 \end{tipbox}
 
+\subsection{Installing The Chosen One}
+An encouraged practice when making a software available is to always provide
+an in depth documentation on it. One can assume, then, that almost every, if not
+all, chosen Linux distribution has a guide to system installation and usage.
+Taking this in mind, the current project will describe in general lines the
+basic needs to install a distro, with some key concepts and necessary tools,
+avoiding redundancy with the material the system itself has.
+\subsubsection{Before anything...}
+When faced with the idea to change the current OS to a Linux distro, before
+major definitive modifications are made, some safety measures are encouraged.
+The central point is to make sure that everything runs smoothly, and avoid
+system breaking errors and data loss as much as possible. In this project, we
+joined some general measures, presented below.
 
-\subsubsection{Installing Mint}
+\begin{description}
+\item[Applications list:] The majority of bioinformatics software is designed
+    with Linux based systems in mind, or provides a compatible version. But,
+    it's recommended to make a list of the main needs and goals of the operator
+    with the system to facilitate the post-install and prevent incompatibility
+    issues.
+\begin{tipbox}
+This list can also be used to help in choosing the distro that fits your needs
+the best.
+\end{tipbox}
+\item[Backup:] Always backup crucial files.
+\item[Driver support:] It's a good practice to check also if external drivers of
+    daily and necessary use have functional drivers for Linux based systems.
+\item[System requirements:] Check beforehand if your current hardware
+    specifications match at least the minimum requirements of the chosen distro.
+    Usually this information can be found in the main webpage of the OS.
+\item[Tool and Applications support:] Although a lot of software nowadays is
+    developed with Linux compatibility in mind, that's not always the case. Some
+    services like the Microsoft Office Package and the Adobe Suite don't have
+    a secure and optimal distribution for Linux based systems, making their
+    usage impossible, impractical or unreliable.
+\end{description}
+After considering the items listed above, you can better decide which path to
+take.
+\begin{tipbox}
+If you aren't yet secure of moving totally to Linux, you can set up a Dual Boot
+function with your current OS and your distro of choice. You can also use
+a Virtual Machine to emulate a Linux environment and use the OS from inside it!
+\end{tipbox}
+\subsubsection{Tools}
+In the majority of cases, not much is needed to proceed with a Linux OS
+installation. Usually, it sums up to:
+\begin{description}
+    \item [Bootable device:] A storage medium containing the core files for the
+        installation of the chosen distro. Usually consists on the medium with
+        the chosen system's ISO file "flashed" into.
+    \item [Image writer:] A dedicated software that is able to correctly flash
+        a storage device with an system image, turning it into a bootable
+        device.
+    \item [ISO file:] Is a file on the ISO format that contains the necessary
+        structure, directions and files for the correct system installation.
+\end{description}
+\begin{definitionbox}
+    \textbf{Flashing:} Consists on taking an ISO image and transferring all the
+    partitions, file systems and files that were present on the device used to
+    create the image.\par 
+    \textbf{ISO format:} The ISO format can be seen as the equivalent of replicating
+        the contents and structure of a CD, DVD or even a Blu-Ray disc.\par 
+        \textbf{Storage device:} An external drive that can be used as a storage
+        medium, e.g. an USB flash drive.  
+\end{definitionbox}
+\subsubsection{Validating the ISO}
+As we can infer, given the above definitions, the process basically consists on
+taking the target OS general structure and files, flashing it into the bootable
+device and using the latter to build the system on the machine. Thus, we can
+logically infer, the success of the operation relies heavily on the integrity of
+the ISO file, as it represents what will be installed.\par
+To avoid the task of manually reviewing, we have more automated means to check
+integrity. For that, in the majority of cases, we can use SHA256 sums to
+complete this task. The usual workflow for such is:
+\begin{enumerate}
+    \item Download the correct sha256sum.txt and sha256sum.txt.gpg files
+        according to the chosen distro and version.\par
+        \textbf{Obs:} Make sure to download the files themselves, and not just
+        copy and paste their content on a new file.
+    \item Open a terminal window where the downloaded sha256sum.txt file is, or
+        navigate to the location.
+    \item If on a Linux system, verify the \textbf{integrity} with:
+\begin{lstlisting}[language=bash]
+sha256sum -b chosendistro.iso
+# Or, if the iso is on another location
+sha256sum -b /path/to/chosendistro.iso
+\end{lstlisting}
+    \begin{remarkbox}
+        On macOS, the command structure is similar, although the command itself
+        is only \textbf{shasum}. But, if you are currently using Windows, the
+        process follows a distinct path. If that's the case, we recommend
+        checking the guide available on the
+        \href{https://forums.linuxmint.com/viewtopic.php?f=42&t=291093}{Linux
+        Mint Forum}, that approaches the problem at hand. 
+    \end{remarkbox}
+    \item If both match, the ISO image was successfully downloaded. If not, it's
+        advisable to re-download the file.
+        \begin{tipbox}
+            Before downloading the ISO again, it's always worth the shot to
+            check a second time if the correct hash file is being tested, that
+            being, the hash for the same distro and same distro version chosen.
+        \end{tipbox}
+\end{enumerate}
+\begin{remarkbox}
+    The shum files are usually provided with the ISO download or can be
+    retrieved in the same page as the main download mirror.\par
+    If you wish to further comprehend what the SHA hash is and how it allows
+    data verification, we recommend the quick post available at
+    \href{https://www.howtogeek.com/67241/htg-explains-what-are-md5-sha-1-hashes-and-how-do-i-check-them/}{How
+    to Geek.}
+   
+\end{remarkbox}
+Okay, the file is intact. But, how do we know that the hash file used to test
+it's integrity is really authentic, and wasn't corrupted or altered? Simple,
+checking it's authenticity. In the case of Linux Mint, it goes as follow
+(\cite{mintInstallationGuide2024}):
+\begin{enumerate}
+    \item Import the Linux Mint signing key.
+        \begin{lstlisting}[language=bash]
+gpg --keyserver hkp://keys.openpgp.org:80 --recv-key \
+27DEB15644C6B3CF3BD7D291300F846BA25BAE09    
+\end{lstlisting}
+    \item Check key importation:
+\begin{lstlisting}[language=bash]
+gpg --list-key --with-fingerprint A25BAE09\end{lstlisting}
+    \item Confirm that the output from the previous command presents the key
+        informed on the first command used and the relation to Linux Mint.
+    \item Check the authenticity with:
+\begin{lstlisting}[language=bash]
+gpg --verify sha256sum.txt.gpg sha256sum.txt
+\end{lstlisting}
+    \item If the output points that the signature is good and was made with the
+        key imported, the test was passed.
+\end{enumerate}
+\begin{tipbox}
+\begin{description}
+\item[PATH:] Make sure that all files informed on the commands are on the
+    current work directory of the opened terminal. If not, you can either change
+    the terminal WD, the files location or specify the full path to the files on
+    the commands.
+\item[GPG warning:] The GPG may send a warn that the signature isn't trusted by
+    the computer, this is expected and normal. 
+\end{description}
+\end{tipbox}
+\subsubsection{Process Overview}
+A full installation guide can usually be found on your distro of choice
+homepage. It usually covers all the needed steps and present FAQ's to help with
+following them.
+\href{https://linuxmint-installation-guide.readthedocs.io/en/latest/}{Here} 
+you can see the documentation for installing Linux Mint.
+The process has similar features for all distros:
+\begin{enumerate}
+    \item Choose and download the intended version.
+    \item Verify the ISO integrity.
+    \item Create the bootable device.
+    \item Insert the bootable media onto your machine and boot from it (Usually
+        accessing the BIOS and changing boot order).
+    \item Enter the system.
+    \item Start the installation setup and follow the steps pointed.
+    \item Reboot the machine.
+    \item Remove the bootable device.
+\end{enumerate}
+The new OS is almost completely ready to use!
+\begin{tipbox}
+Most Linux distributions allow the user to test the system before fully
+installing via the bootable device.
+\end{tipbox}
+\subsubsection{Aftermath}
+
 
 \subsection{Command Line and Terminal operation}
 When using Linux based OS's, one specific "feature" get's the spotlight on the
