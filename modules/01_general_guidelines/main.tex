@@ -287,8 +287,43 @@ Most Linux distributions allow the user to test the system before fully
 installing via the bootable device.
 \end{tipbox}
 \subsubsection{Aftermath}
-
-
+With the installation done, the core of the system is available for you to use.
+But, some actions are recommended.
+\begin{description}
+\item[Extra drivers:] After the first package repository update, check and
+    install possible needed drivers. This step ensures good functioning of
+    connected devices and machine hardware. The
+    \href{https://linuxmint-installation-guide.readthedocs.io/en/latest/drivers.html}{Linux
+    Mint Documentation} offers a step-by-step guide for this task.
+\item[Language and Keyboard Layout:] Usually set during installation, but
+    sometimes the user may need to add support to other languages and layouts or
+    change the previously selected. For Linux Mint this can be done on the
+    Languages or Keyboard layout settings.
+\item[Multimedia codecs:] Some media functionalities require specific codecs that
+    may not come with the installed version, even if the option is given during
+    installation. If that's the case, they must be manually installed, according
+    to the user's need and current distro. The
+    \href{https://linuxmint-installation-guide.readthedocs.io/en/latest/codecs.html}{Linux
+    Mint Documentation} also approach this subject.
+    \item[Update the system:] Although the base applications, drivers, libraries
+        and others are already installed, it's a good habit to update them after
+        the first reboot and from time to time. Some distributions, like Mint
+        and Ubuntu, offer a GUI application to do so, but all distributions
+        offer a terminal package manager option. For Debian derived distros,
+        like Mint, one can achieve this by running on the terminal the
+        following:
+\begin{lstlisting}[language=bash]
+# Refresh package list
+sudo apt update
+# Install all available updates
+# for installed packages
+sudo apt upgrade
+\end{lstlisting}
+\begin{tipbox}
+It's a good practice to check which packages are available to upgrade, since the
+operation may cause versioning problems.
+\end{tipbox}
+\end{description}
 \subsection{Command Line and Terminal operation}
 When using Linux based OS's, one specific "feature" get's the spotlight on the
 eyes of newcomers: the command line. Basically all tasks done via GUI's can be
@@ -511,6 +546,30 @@ location.
 \end{cheatsheetbox}
 
 \section{Git}
+Git is a powerful tool for handling different aspects of projects related to
+their development, maintenance and distribution. Based on this, we consider that
+approaching some basic concepts and presenting useful commands should be helpful
+for newcomers in the bioinformatics field.
+\subsection{What is it?}
+Git is a Version Control System that conceptualizes the data that's stored as
+a series of snapshots of a mini file system. So, by using the command to commit
+the changes, git takes a snapshot of the current state of the files and stores
+a reference to it (\cite{straubProGit2025}). The capability of simultaneous work
+on the same file system in a controlled environment, with a large and
+lightweight support of branch creation, is what makes git an important tool to
+learn.\par
+\begin{definitionbox}
+    \textbf{Branches} are a core functionality of nearly every VCS. It consists
+    on diverging from a main state of the current project and being able to work
+    on it without directly affecting the origin (\cite{straubProGit2025}).
+    So, if all go wrong,
+    you can just go back in time. And, if all goes right, you merge. Neat.
+\end{definitionbox}
+The user initially clones an available repository, thus receiving all of it's
+files and file structure. Then, he can operate locally on them and commit the changes.
+This changes can then be reviewed, if necessary, and merged with the original 
+\subsection{The basics}
+\subsection{Useful commands}
 
 \section{Conda}
 
