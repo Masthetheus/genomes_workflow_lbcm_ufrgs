@@ -566,12 +566,196 @@ learn.\par
     you can just go back in time. And, if all goes right, you merge. Neat.
 \end{definitionbox}
 The user initially clones an available repository, thus receiving all of it's
-files and file structure. Then, he can operate locally on them and commit the changes.
-This changes can then be reviewed, if necessary, and merged with the original 
+files and file structure. Then, he can operate locally on them and commit
+eventual changes, that can be reviewed, if necessary, and merged with the 
+original source.
 \subsection{The basics}
+Let's work on a hipotetical example, aiming to exercise git basic operation.
+Firstly, we must be sure git is installed on the current system. In a new
+terminal, run the following:
+\begin{lstlisting}[language=bash]
+git --help
+\end{lstlisting}
+If further instructions on git usage are shown, then git is installed and can be
+used for repository manipulation on the current machine. 
+\begin{tipbox}
+On Linux Mint, you can install git via:
+\begin{lstlisting}[language=bash]
+sudo apt update # refresh the package listing
+sudo apt install git #install the git package
+\end{lstlisting}
+Also, if it's the user's first time on git, we recommend checking
+\href{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}{git's
+first time setup docs.} 
+\end{tipbox}
+Ok, now we are going to fetch the current repository and start to work within
+it.
+\begin{lstlisting}[language=bash]
+git clone https://github.com/user/repository_name.git
+cd repository_name
+ls -a # Here you can see that all files
+      # and repository structure are now
+      # downloaded and available locally
+\end{lstlisting}
+Inside the new folder system gathered, you can start manipulating files and
+structure. But, first, it's usually recommended to create a new branch for such,
+aiming to maintain system integrity and organization. Further information on git
+branching can be seen on the \href{https://git-scm.com/docs/git-branch}{git
+doc's.} 
+\begin{lstlisting}[language=bash]
+git branch --list # shows currently available branches
+git checkout -b new_branch_name # creates new branch and switches
+                                # automatically to it 
+\end{lstlisting}
+\begin{tipbox}
+You can see where you are in comparison with the bigger picture with the command
+below. It shows your current branch, it's relation to the origin and your
+current work "status".
+\begin{lstlisting}[language=bash]
+git status
+\end{lstlisting}
+\end{tipbox}
+Let's suppose you made some changes and want to sync them with the non-local
+repository. Firstly, you need to stage the changes. This means that you need to
+inform to git what files or paths were altered, with the add command. Then, you
+need to commit those changes, being a good practice to indicate with a short
+text what was worked on. Full documentation on git commit's can be found
+\href{https://git-scm.com/docs/git-commit}{here.}  
+\begin{lstlisting}[language=bash]
+# suppose you edit a file named test.txt
+git add test.txt
+# if more files were altered:
+git add test.txt test2.txt
+# to commit all changes simply
+git commit -m "Commit message"
+# if a path was altered, you can add and commit
+# it at the same time, without affecting
+# the previous changes
+git commit -m "What was changed" General_test
+\end{lstlisting}
+\begin{tipbox}
+You can commit directly all altered files with the -a flag. Keep in mind this
+doesn't affect new files that git doesn't knows about.
+\end{tipbox}
+Let's suppose you forgot to add a file on the commit. You can then amend that
+commit, generating a commit that will replace the results of the first.
+\begin{lstlisting}[language=bash]
+git add what_you_forgot
+git commit --amend
+\end{lstlisting}
+Now, you still have the same files and structure on the main branch of the
+repository, but a whole new view on your work branch. Let's say your work on
+this new branch is done, and can now be incremented to the main structure. You
+need first to go back to the master branch, and then perform what we call
+a branch merge. After all, usually the created branch, now merged, is deleted,
+aiming to keep directory organization.
+\begin{lstlisting}[language=bash]
+git checkout master # switch branch
+git merge new_branch_name # performs the merge
+git branch -d new_branch_name # deletes older branch
+\end{lstlisting}
+But, what about the files themselves that were altered? How do we send them to
+the remote repository, if the changes occurred locally? Simple. We push.
+\begin{lstlisting}[language=bash]
+git push REMOTE-NAME BRANCH-NAME
+\end{lstlisting}
+In the case we were using above, we would:
+\begin{lstlisting}[language=bash]
+git push origin main
+\end{lstlisting}
+Further information on push usage can be found on the
+\href{https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository}{github
+push documentation.} 
+\begin{remarkbox}
+The opposite to pushing, is pulling. You can pull changes from given remote
+repository to the current branch. If the current is behind, it gets updated. If
+divergences are found, the user must specify how they should be approached.
+For further comprehension on command usage, please refer to the
+\href{https://git-scm.com/docs/git-pull}{git documentation.} 
+\end{remarkbox}
 \subsection{Useful commands}
-
+\begin{cheatsheetbox}
+\textbf{Command:} \texttt{add} \\
+\textbf{Description:} Stage certain files for the current commit.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{clone} \\
+\textbf{Description:} Clones to local work space the given repository.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{commit} \\
+\textbf{Description:} Marks staged changes of remote repository to the current
+branch snapshot.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{pull} \\
+\textbf{Description:} Fetches changes of a remote repository to the current
+branch.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{push} \\
+\textbf{Description:} Sends local changes to the remote repository.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{status} \\
+\textbf{Description:} Print current local repository status, like current branch
+and summary of changes.
+\end{cheatsheetbox}
 \section{Conda}
+When working actively with bioinformatics pipelines, software version management
+and compatibility quickly becomes a major issue, requiring close attention in
+order to avoid errors and issues that could affect the correct system operation.
+With this in mind, Conda appears with the intent to minimize or solve completely
+those issues. It is a command line tool aimed to package and environment
+management, running in all base OS's available (Linux, mac and Windows).\par
+Given it's importance and ease to use, for newcomers in the field, we shall
+approach quickly conda's main topics and commands.
+\subsection{Installation}
+Although one can install directly conda from the source, two main minimal
+installers are currently available. Their focus is on allowing a quick and
+functional install of the core conda package. These are the
+\href{https://www.anaconda.com/docs/getting-started/miniconda/main}{Miniconda}
+and \href{https://conda-forge.org/download/}{Miniforge.} The first is related
+directly to the Anaconda company, while the latter is community maintained. We
+advise newcomers to first experience the software via the miniforge application,
+given it's strong community and support. The next steps will be taken
+considering you followed our advice.\par
+Detailed installation directions can be found on the
+\href{https://github.com/conda-forge/miniforge}{miniforge github page}.
+We need to replicate the files and structure of the software for it to correctly
+operate. Happily, this don't need to be done manually. The complete installation
+and initial setup is realized entirely via the available bash file, that we can
+obtain with terminal command call or downloading straight from the github
+source.
+\begin{lstlisting}[language=bash]
+curl -L -O "https://github.com/conda-forge/miniforge/releases \
+/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+# or
+wget "https://github.com/conda-forge/miniforge/releases \ 
+/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+# to install simply run the script
+bash Miniforge3-$(uname)-$(uname -m).sh
+\end{lstlisting}
+\begin{remarkbox}
+The uname and uname-m portions refer to the current version available of
+miniforge. They can be altered to specific versions, though not recommended.
+\end{remarkbox}
+After the install, it shall ask you, the user, if auto start should be
+available. For ease of use, we recommend so, although it remains totally as
+a personal choice. This way, the initialization of the base conda environment is
+added to the .bashrc file and to the PATH environment, allowing to be called
+from any terminal window. To check if all worked as intended, you can run the
+following command:
+\begin{lstlisting}[language=bash]
+conda --help
+\end{lstlisting}
+If a summary list of the available options shows up, everything is working as
+intended. You can also see that, on new terminal windows or by resourcing
+.bashrc the tag (base) shows up before the usual terminal header. This tag
+indicates the active conda environment. 
+\begin{definitionbox}
+    An \textbf{environment} can be seen as a sub system inside your main one. It
+    store certain packages and applications on specific versions and can be
+    activated or deactivated. In that way, one can better manage dependencies
+    and avoid major inconveniences on package installation and maintenance.
+\end{definitionbox}
+\subsection{General usage}
+\subsection{Useful commands}
 
 \section{}
 
