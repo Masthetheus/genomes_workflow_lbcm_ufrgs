@@ -755,170 +755,158 @@ indicates the active conda environment.
     and avoid major inconveniences on package installation and maintenance.
 \end{definitionbox}
 \subsection{General usage}
+The basic operation revolves around environment usage. You can check what
+environments are currently available with:
+\begin{lstlisting}[language=bash]
+conda info --envs
+\end{lstlisting}
+Then, you can start any of those with:
+\begin{lstlisting}[language=bash]
+conda activate env_name
+\end{lstlisting}
+But let's suppose you're off from a fresh start. The first step is to create an
+environment. Usually, it's recommended to create a virtual environment for each
+"bigger purpose". In another terms, it's advised to operate with an environment
+that revolves around a well defined goal and where the internal components
+aren't in direct conflict. To create a full genome ambient, one could use:
+\begin{lstlisting}[language=bash]
+conda create -n genome_workflow
+# if you already know base packages that shall be
+# needed, you can install them with the creation
+conda create -n genome_workflow pandas biopyhton
+# to activate the created env, as above we use
+conda activate genome_workflow
+\end{lstlisting}
+You can see that, after activating it, the (base) before your name on the bash
+terminal is changed to the current active virtual environment. Done! Now, when
+calling commands and running pipelines on this terminal window, the specifics of
+the environment shall be used as rule, and not the base system's default
+options. But, more important, environment specific software and versions shall
+be contained in it, being returned to "default", other versions or
+non-existence, as soon as you exit the venv. To install a package, simply run:
+\begin{lstlisting}[language=bash]
+conda install package_name
+# you can also specify the package source
+conda install conda-forge::package_name 
+\end{lstlisting}
+\begin{tipbox}
+You can see all currently installed packages and their versions with:
+\begin{lstlisting}[language=bash]
+conda list # running within the env
+conda list -n env_name # running from base terminal
+\end{lstlisting}
+\end{tipbox}
+When done, you can exit the venv by simply using:
+\begin{lstlisting}[language=bash]
+conda deactivate genome_workflow
+\end{lstlisting}
+And done, that's the basic conda usage and logic!
+\begin{tipbox}
+Some packages can be found on specific conda channels. The available channels
+are found inside the .condarc user file. You can modify such directly via
+terminal or with the \href{https://bioconda.github.io/}{recommended doc's
+commands:}
+\begin{lstlisting}[language=bash]
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+\end{lstlisting}
+Keep in mind depending on the installation method, one or more of those can
+already be present.
+\end{tipbox}
+\subsubsection{An important note on environments}
+Given the centrality of environments for conda usage, we will approach some
+interesting functionalities related to environment manipulation and maintenance.
+For an in-depth look in the subject, we recommend accessing the
+\href{https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html}{conda
+enviroments docs.}\par
+Apart from creating a "blank" environment, as pointed in the previous topic, you
+can use a pre-made file that sets the env with a "model". For this, you will
+need a environment.yml file, that can be manually created, fetched from some
+repository or exported from another environment.
+\begin{lstlisting}[language=bash]
+conda env create -f environment.yml
+\end{lstlisting}
+\begin{tipbox}
+Environment local export can be made with:
+\begin{lstlisting}[language=bash]
+conda export
+# or specifying the file name
+conda export --file name
+\end{lstlisting}
+Further instructions and options can be seen on
+\href{https://docs.conda.io/projects/conda/en/latest/commands/env/export.html}{conda
+doc's.} 
+\end{tipbox}
+This file can also be updated to better reflect the newest releases.
+\begin{lstlisting}[language=bash]
+conda env update --file environment.yml --prune
+\end{lstlisting}
+Let's suppose you want 
+Another option is to clone an environment that already exists on your machine,
+if, let's say, you will start a similar project where the same base shall
+suffice. For that, use:
+\begin{lstlisting}[language=bash]
+conda create --name cloneenv --clone originalenv
+\end{lstlisting}
+Finally, we have also the option to produce an environment specs list, that
+explicitly details installed packages, theirs versions and distributions. Then,
+this list can be used to replicate it's properties on another env of choice.
+\begin{lstlisting}[language=bash]
+conda list --explicit # only print the specs
+# We can use the > terminal operator to put the
+# output of the command inside certain file
+conda list --explicit > spec-file.txt
+# This file can then be exported to other machines
+# or used in the same one to create new identical environments
+conda create -- name myenv --file spec-file.txt
+# or aggregate said packages on existing ones
+conda install --name myenv --file spec-file.txt
+\end{lstlisting}
+
 \subsection{Useful commands}
-
-\section{}
-
-
-\section{Tools \& Software}
-
-\subsection{Required Software}
-\sn{Installation notes}
-
-\begin{itemize}
-    \item \textbf{Primary tool:} Tool name and version
-    \item \textbf{Dependencies:} Required libraries/packages
-    \item \textbf{Optional:} Additional helpful tools
-\end{itemize}
-
-\subsection{Installation Guide}
-\begin{lstlisting}[language=bash, caption=Software installation]
-# Installation commands
-conda install -c bioconda tool_name
-# or
-sudo apt-get install package_name
+\begin{cheatsheetbox}
+\textbf{Command:} \texttt{activate} \\
+\textbf{Description:} Activate given environment.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{deactivate} \\
+\textbf{Description:} Returns to base environment.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{create} \\
+\textbf{Description:} Allows environment creation.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{info} \\
+\textbf{Description:} Print basic current conda install informations.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{install} \\
+\textbf{Description:} Allows package install inside an environment.
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{list} \\
+\textbf{Description:} Prints installed packages information of the current
+active environment.\\
+\textbf{Useful parameters and flags:}\\
+explicit - Gives full detail on installed packages specs.\\
+e - Output machine-readable requirement strings of packages.\\
+no-pip - Exclude pip-only installed packages.\\
+\noindent\makebox[\linewidth]{\dotfill}
+\textbf{Command:} \texttt{update} \\
+\textbf{Description:} Fetch updates for given packages. Can be used to update
+conda itself with:\\
+\begin{lstlisting}[language=bash]
+conda update conda
 \end{lstlisting}
-
-\section{Workflow \& Methods}
-
-\subsection{Step-by-Step Protocol}
-\sn{Key parameters}
-
-\begin{enumerate}
-    \item \textbf{Data preparation:} Input requirements and formatting
-    \item \textbf{Quality control:} Initial data assessment
-    \item \textbf{Main analysis:} Core computational steps
-    \item \textbf{Result interpretation:} Output analysis and validation
-\end{enumerate}
-
-\begin{example}
-Practical example with real genomic data.
-\end{example}
-
-\section{Practical Examples}
-
-\subsection{Example 1: Basic Analysis}
-\sn{Input/output files}
-
-\begin{itemize}
-    \item \textbf{Input:} Sample data description
-    \item \textbf{Command:} Based on approach from \cite{example2024}
-    \item \textbf{Output:} Expected results and file formats
-\end{itemize}
-
-\begin{lstlisting}[language=bash, caption=Basic command example]
-# Example command with typical genomic data
-tool_name -i input_file.fasta -o output_file.txt --parameter value
-\end{lstlisting}
-
-\subsection{Example 2: Advanced Usage}
-\sn{Complex parameters}
-
-\begin{lstlisting}[language=bash, caption=Advanced analysis pipeline]
-# Multi-step analysis pipeline
-step1_tool input.fasta | step2_tool --param1 value1 > intermediate.txt
-step3_tool intermediate.txt --param2 value2 -o final_result.txt
-\end{lstlisting}
-
-\section{Results \& Interpretation}
-
-\subsection{Output Files}
-\sn{File formats}
-
-Common output formats and their interpretation:
-\begin{itemize}
-    \item \textbf{Format 1:} Description and typical contents
-    \item \textbf{Format 2:} When and how to use this output
-    \item \textbf{Quality metrics:} How to assess result quality
-\end{itemize}
-
-\begin{remark}
-Important note about result interpretation following \citet{author2024}.
-\end{remark}
-
-\section{Scripts \& Code}
-
-\subsection{Helper Scripts}
-\begin{lstlisting}[language=Python, caption=Data processing script]
-#!/usr/bin/env python3
-"""
-Helper script for genomic data processing
-Usage: python script.py input.fasta output.txt
-"""
-
-def process_sequences(input_file, output_file):
-    """Process genomic sequences"""
-    with open(input_file, 'r') as f:
-        sequences = f.read()
-    
-    # Processing logic here
-    processed = sequences.upper()
-    
-    with open(output_file, 'w') as f:
-        f.write(processed)
-
-if __name__ == "__main__":
-    import sys
-    process_sequences(sys.argv[1], sys.argv[2])
-\end{lstlisting}
-
-\subsection{Quality Control}
-\begin{lstlisting}[language=bash, caption=QC pipeline]
-#!/bin/bash
-# Quality control pipeline for genomic data
-
-# Check file format
-file_format_check.py $INPUT_FILE
-
-# Basic statistics
-sequence_stats.py $INPUT_FILE > stats.txt
-
-# Quality assessment
-quality_assessment_tool $INPUT_FILE --output qc_report.html
-\end{lstlisting}
-
-\section{Troubleshooting \& Best Practices}
-
-\subsection{Common Issues}
-\sn{Error solutions}
-
-\begin{itemize}
-    \item \textbf{Memory errors:} Reduce dataset size or increase available RAM
-    \item \textbf{Format issues:} Check input file formatting and encoding
-    \item \textbf{Parameter tuning:} Guidelines for optimization
-\end{itemize}
-
-\subsection{Best Practices}
-\begin{itemize}
-    \item \textbf{Data backup:} Always keep original data copies
-    \item \textbf{Version control:} Track analysis versions and parameters
-    \item \textbf{Documentation:} Record all analysis steps and decisions
-    \item \textbf{Reproducibility:} Use consistent environments and seeds
-\end{itemize}
-
-\begin{references}
-    \item Key papers: \cite{example2024,author2024,smith2024}
-    \item Software documentation: [Tool official docs]
-    \item Related modules: [Other workflow modules]
-\end{references}
-
-\section{Exercises \& Next Steps}
-
-\begin{itemize}
-    \item \todo{Practice with provided sample data}
-    \item \todo{Try different parameter settings}
-    \item \important{Apply to your own genomic dataset}
-    \item \todo{Explore advanced features}
-\end{itemize}
-
-\begin{notes}
-Additional observations and module-specific notes...
-
-\highlight{Key insight}: Connection between this tool and genome annotation pipeline
-
-\idea{Extension}: Integration with other bioinformatics tools in the workflow
-
-\end{notes}
+\end{cheatsheetbox}
+\section{Module Summary}
+In this module we provided a quick overview of important tools and software of
+the field in a macro view. First, we understood basic logic and operation of
+Linux based system, crucial for command line programs usage. Then, the git
+logic for repository work and cloning was presented, vital for organizing big
+projects and granting better maintainability. Finally, conda was shown,
+providing the user with a powerful tool for package integrity and ease of use
+workflow setups.
+\subsection{What's next?}
+With the general topics covered, we shall start approaching the pipeline
+workflow itself. First, we are going to study data pre-processing.
 
 % BIBLIOGRAPHY
 \newpage

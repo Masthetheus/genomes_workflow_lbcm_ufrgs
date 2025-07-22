@@ -3,13 +3,21 @@ All notable changes to the project and repository will be documented in this fil
 
 ## [Unreleased]
 ### In Progress
-- modules: Introduction section completion
-- modules: Modules on basic system usage (linux and conda)
+- documentation: adjustments on internal module readme for module functionalities
+- documentation: readme adjustments to include new 01 finalized module
+- modules: Data pre-processing module
+- templates: Template for module's readme
 - scripts: Allow preamble "refreshing"
 
 ### Coming Soon
-- Complete .tex/.pdf Introduction section.
-- Modules on basic system usage.
+- Create new module full structure
+- New template for module's readme
+- Module readme completion automation
+
+## [0.3.0] - 2025-07-22
+### Added
+- modules: New module implemented: 01 - General guidelines.
+
 
 ## [0.2.0] - 2025-07-17
 ### Added
@@ -21,5 +29,5 @@ All notable changes to the project and repository will be documented in this fil
 ### Added
 - Basic project structure
 - Base project documentation
-- Introduction module (01)
+- Introduction module (00)
 - Base scripts for project maintenence and for users
