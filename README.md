@@ -29,7 +29,7 @@ Repository contains mainly MD files aimed to structure a easy to start approach 
 
 ## About the Project
 
-A general repository to store mainly .tex files compiling instructions of common bioinformatics tools used in genome assembly and annotation. It aims to help LBCM students to start on the field in a more approachable way but maintaining their autonomy. In this sense, Linux general usage, environment manipulation and doc's referral practice is still present and highly encouraged to be further explored.
+A general repository to store mainly .tex files compiling instructions of common bioinformatics tools used in genome assembly and annotation. It aims to help LBCM students to start on the field in a more approachable way but maintaining their autonomy. In this sense, Linux general usage, environment manipulation and doc's referral practice is still present and highly encouraged to be further explored. **Currently, development work is focused on the base workflow usage. Theoretical references, although mencioned and valuable, shall be implemented on due time.**
 
 ## Getting Started
 

@@ -1,0 +1,85 @@
+% Genomes Workflow Module Template - LBCM UFRGS
+% Based on NotesTeX and Gilles Castel's aesthetic approach
+% Module: 02 - Data pre-processing
+% Date: DATE_PLACEHOLDER
+
+\documentclass[a4paper,11pt]{article}
+
+% Use ONLY the beautiful notes preamble for notes
+\input{preamble.tex}
+
+\title{
+    \vfill
+    \textcolor{noteblue}{\Huge Genomes Workflow - LBCM}\\
+    \vspace{5.0cm}
+    \textcolor{sidenotegray}{\huge 02 - Data pre-processing}\\
+    \vspace{1.5cm}
+    \textcolor{sidenotegray}{\LARGE }\\
+    \vspace{5.0cm}
+    \textcolor{sidenotegray}{\large \today}
+    \vfill
+}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\newpage
+\section{Overview}
+Once the base introduction and general guidelines were covered, we can start
+working directly on the pipeline itself. For starters, it's always advised to
+pre-process our data, that being: understanding it's origin, how we expect it to
+behave and what special treatment does it need. Following such general stone
+path can help we obtain better results later on, securing data integrity and
+usability.
+\subsection{Module Objectives}
+\begin{itemize}
+    \item Present the logic behind data pre-processing.
+    \item Approach tools that operate on such function.
+    \item Analyze output examples.
+    \item Comprehend the importance of such step on the general workflow.
+\end{itemize}
+\subsection{Module Required Tools}
+\begin{itemize}
+    \item Conda (recommended)
+    \item Git (recommended)
+    \item FASTP
+    \item FASTQC
+\end{itemize}
+\subsection{Module Structure}
+The current module is divided in two big sections:
+\begin{description}
+    \item[Theoretical Framework:] Approaches the theory behind the process
+        that's being mainly covered on the current module. The idea is to allow
+        the user to consult for general concepts comprehension and, if needed,
+        guide him to sources for a more in depth coverage.
+    \item [Practical approach:] In this section, we shall explain in practice
+        how this step can be applied. For such, NCYC357.fastq, a paired-end
+        Illumina set of reads, will be used, although the intrinsic logic and
+        observations can be applied to other samples.
+\end{description}
+\section{Theoretical Framework - Data pre-processing}
+\subsection{What is it?}
+\subsection{Why it's important?}
+\subsection{Base assumptions}
+\section{Practical approach}
+\subsection{Data analysis}
+\subsubsection{Gathering the data}
+\subsubsection{Understanding our data}
+\subsubsection{Taking decisions}
+\subsection{Data pre-processing}
+\subsubsection{Choosing the right tools}
+\subsubsection{How results can become parameters}
+\subsubsection{Pre-processing}
+\subsubsection{Understanding what's found}
+
+
+% BIBLIOGRAPHY
+\newpage
+\printbibliography
+
+\end{document}
