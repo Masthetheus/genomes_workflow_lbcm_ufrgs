@@ -66,8 +66,14 @@ fastp -i NCYC357_CKDN230000699-1A_HT5GMDSX5_L1_1.fq.gz  \
     - correction = based on overlapping detection for pe data, proper overlaps
         leads to mismatch correction
     - Already gives pre and after graph comparison!
-13. Draw conclusions from pre-processing
-14. If needed, stablish new parameters or re-run fastp until satisfactory
+13. Fastp Matheus test prompt:
+```bash
+fastp -i NCYC357_test_L1_1.fq.gz -I NCYC357_test_L1_2.fq.gz -o result1complexity.fq.gz \
+-O result2complexity.fq.gz -q 28 --detect_adapter_for_pe --correction --trim_tail1=2 \
+--trim_tail2=2 --trim_front1=10 --trim_front2=10 --trim_poly_x -p -y
+```
+14. Draw conclusions from pre-processing
+15. If needed, stablish new parameters or re-run fastp until satisfactory
     results.
-15. Proceed to processing (if needed).
+16. Proceed to processing (if needed).
 
